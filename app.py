@@ -55,7 +55,7 @@ def webhook():
     return "ok", 200
 
 Velkomst_receive = ("hej", "hello", "hi")
-Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjælpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjælpe dig med at finde et par flotte blomster, lækker chokolade eller en god gin"]
+Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, lækker chokolade eller en god gin"]
 
 def velkomst_check(message_text):
     for word in message_text.split():
