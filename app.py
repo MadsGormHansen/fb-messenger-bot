@@ -28,7 +28,7 @@ def velkomst_check(message_text):
     for word in message_text.words:
         if word.lower() in Velkomst_receive:
             return random.choice(Velkomst_send)
-        else return "Hej")
+        else return "Hej"
 
 
 @app.route('/', methods=['POST'])
