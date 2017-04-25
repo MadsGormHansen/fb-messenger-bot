@@ -20,17 +20,6 @@ def verify():
 
     return "Hello world", 200
 
-
-Velkomst_receive = ("*hej" , "hej*", "*hello", "hello*", "*hi", "hi*")
-Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjælpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjælpe dig med at finde et par flotte blomster, lækker chokolade eller en god gin"]
-
-def velkomst_check(message_text):
-    for word in message_text.words:
-        if word.lower() in Velkomst_receive:
-            return random.choice(Velkomst_send)
-        else return "Hej"
-
-
 @app.route('/', methods=['POST'])
 def webhook():
 
@@ -50,8 +39,7 @@ def webhook():
                     recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                     message_text = messaging_event["message"]["text"]  # the message's text
 
-                send_message(sender_id, velkomst_check(message_text))
-                                       
+                    send_message(sender_id, velkomst_check(message_text))
                 
                 if messaging_event.get("delivery"):  # delivery confirmation
                     pass
@@ -63,6 +51,15 @@ def webhook():
                     pass
 
     return "ok", 200
+
+Velkomst_receive = ("hej", "hello", "hi")
+Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjælpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjælpe dig med at finde et par flotte blomster, lækker chokolade eller en god gin"]
+
+def velkomst_check(message_text):
+    for word in message_text.words:
+        if word.lower() in Velkomst_receive:
+            return random.choice(Velkomst_send)
+    return "Hej"
 
 
 def send_message(recipient_id, message_text):
