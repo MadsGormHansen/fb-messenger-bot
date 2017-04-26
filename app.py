@@ -44,7 +44,7 @@ def webhook():
                         for word in message_text.split():
                             if word.lower() in Velkomst_receive:
                                send_message(sender_id, velkomst_check(message_text))
-                            elif word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
+                            elif word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
                                send_message(sender_id, efter_velkomst(message_text))
                             else:
                                 send_message(sender_id, "Fuck dig!")
