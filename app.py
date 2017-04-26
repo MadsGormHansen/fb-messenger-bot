@@ -69,7 +69,7 @@ def velkomst_check(message_text):
     for word in message_text.split():
         if word.lower() in Velkomst_receive:
             return random.choice(Velkomst_send)
-    return message_text.split(","):
+    return message_text.split(",")
     
 def efter_velkomst(message_text):
     for word in message_text.split(","):
