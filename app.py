@@ -41,8 +41,11 @@ def webhook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text
 
+                    if message_text in Velkomst_receive:
                         send_message(sender_id, velkomst_check(message_text))
-                    
+                    if message_text in eftervelkomst_recieve1 and eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
+                        send_message(sender_id, efter_velkomst(message_text))
+                        
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -55,13 +58,31 @@ def webhook():
     return "ok", 200
 
 Velkomst_receive = ("hej", "hello", "hi")
-Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin"]
+Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
+eftervelkomst_recieve1 = ("købe", "se", "undersøge","sende") 
+eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
+eftervelkomst_recieve3 = ("alkohol", "gin", "rom", "vodka", "cognac","vin","oel","smag")
+eftervelkomst_recieve4 = ("chokolade", "kakao", "laekkerier", "soedt")
+eftervelkomst_send1 = ("hvem har oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
+eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
+eftervelkomst_send2 = ("Jeg elsker chokolade ", "hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 
 def velkomst_check(message_text):
     for word in message_text.split():
         if word.lower() in Velkomst_receive:
             return random.choice(Velkomst_send)
     return "Hej"
+
+
+def efter_velkomst(message_text):
+    for word in message_text.split():
+        if word.lower() in eftervelkomst_recieve1 and in eftervelkomst_receive2:
+            return random.choice(eftervelkomst_send1)
+        if word.lower() in eftervelkomst_recieve1 and in eftervelkomst_receive3:
+            return random.choice(eftervelkomst_send2)
+        if word.lower() in eftervelkomst_recieve1 and in eftervelkomst_receive4:
+            return random.choice(eftervelkomst_send2)
+    return "Jeg forstår ikke hvad du siger, hvilket produkt kan jeg hjaelpe dig med?" 
 
 
 def send_message(recipient_id, message_text):
