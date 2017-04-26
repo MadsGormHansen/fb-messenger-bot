@@ -44,11 +44,10 @@ def webhook():
                     for word in message_text.split():
                         if word.lower() in Velkomst_receive:
                             send_message(sender_id, velkomst_check(message_text))
-                            
-                    for word in message_text.split():
                         if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
                             send_message(sender_id, efter_velkomst(message_text))
-                        
+                    send_message(sender_id, "Fuck dig!")
+                     
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
