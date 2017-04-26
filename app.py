@@ -41,10 +41,13 @@ def webhook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text
 
-                    if message_text in Velkomst_receive:
-                        send_message(sender_id, velkomst_check(message_text))
-                    if message_text in eftervelkomst_recieve1 and eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
-                        send_message(sender_id, efter_velkomst(message_text))
+                    for word in message_text.split():
+                        if word.lower() in Velkomst_receive:
+                            send_message(sender_id, velkomst_check(message_text))
+                            
+                    for word in message_text.split():
+                        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
+                            send_message(sender_id, efter_velkomst(message_text))
                         
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
@@ -76,11 +79,11 @@ def velkomst_check(message_text):
 
 def efter_velkomst(message_text):
     for word in message_text.split():
-        if word.lower() in eftervelkomst_recieve1 and in eftervelkomst_receive2:
+        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive2:
             return random.choice(eftervelkomst_send1)
-        if word.lower() in eftervelkomst_recieve1 and in eftervelkomst_receive3:
+        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive3:
             return random.choice(eftervelkomst_send2)
-        if word.lower() in eftervelkomst_recieve1 and in eftervelkomst_receive4:
+        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send2)
     return "Jeg forstår ikke hvad du siger, hvilket produkt kan jeg hjaelpe dig med?" 
 
