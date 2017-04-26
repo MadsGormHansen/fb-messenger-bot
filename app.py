@@ -55,7 +55,7 @@ def webhook():
 
     return "ok", 200
 
-Velkomst_receive = ("hej", "hello", "hi")
+Velkomst_receive = ("hej", "hello", "hi", "hejsa")
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
 eftervelkomst_receive1 = ("koebe", "se", "undersoege","sende") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
@@ -69,17 +69,17 @@ def velkomst_check(message_text):
     for word in message_text.split():
         if word.lower() in Velkomst_receive:
             return random.choice(Velkomst_send)
-    return "hej1"
+    return "hejsa"
     
 def efter_velkomst(message_text):
     for word in message_text.split():
-        if word.lower() in eftervelkomst_receive2):
+        if word.lower() in eftervelkomst_receive2:
             return random.choice(eftervelkomst_send1)
         if word1.lower() in eftervelkomst_receive3:
             return random.choice(eftervelkomst_send2)
         if word1.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send3)
-    return "hej2"
+    return "hejso"
 
 def Send(message_text):
     for word in message_text.split():
@@ -87,7 +87,7 @@ def Send(message_text):
             return velkomst_check(message_text)
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
-    return "fuck dig!"
+    return "fuck dig"
 
 
 def send_message(recipient_id, message_text):
