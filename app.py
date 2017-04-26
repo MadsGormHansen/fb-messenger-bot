@@ -40,7 +40,8 @@ def webhook():
                         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"]["text"]  # the message's text
-
+                        message_text = unicode(sys.argv[1], 'utf8')
+                        
                         for word in message_text.split():
                             if word.lower() in Velkomst_receive:
                                send_message(sender_id, velkomst_check(message_text))
