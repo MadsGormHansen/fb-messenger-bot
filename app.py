@@ -86,7 +86,7 @@ def efter_velkomst(message_text):
             return random.choice(eftervelkomst_send2)
         if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send2)
-    return "Jeg forstår ikke hvad du siger, hvilket produkt kan jeg hjaelpe dig med?" 
+    return "Jeg forstoer ikke hvad du siger, hvilket produkt kan jeg hjaelpe dig med?" 
 
 
 def send_message(recipient_id, message_text):
