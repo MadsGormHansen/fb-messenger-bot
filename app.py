@@ -15,6 +15,14 @@ app = Flask(__name__)
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
     # the 'hub.challenge' value it receives in the query arguments
+
+curl -X POST -H "Content-Type: application/json" -d '{ 
+  "get_started":{
+    "payload":"Kom igang"
+  }
+}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAAD5ZA0yoEewBAIh13Kg8HthCP5mBV90m9e2b98vLKTACbWGLD0ZAPlFzf7J4bgESHLp1XXyM45MP42z01AWZCB35Qhv6n0keaSGQZCxZCe3vAbd22tjwzHtgx3hgFRqs6kHCb757onZCtEWmqULI2aT5GMJtalSZBy90HvN7uYxgZDZD"
+
+    
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
@@ -55,15 +63,15 @@ def webhook():
 
     return "ok", 200
 
-Velkomst_receive = (u"hej", u"hello", u"hi", u"hejsa")
-Velkomst_send = [u"Velkommen til Flora, Hvad kan jeg hjælpe med?", u"Velkommen til flora, jeg er en chatbot om meget gerne vil hjælpe dig med at finde et par flotte blomster, lækker chokolade eller en god gin, hvad kan jeg gøre for dig?"]
-eftervelkomst_receive1 = (u"købe", u"se", u"undersøge",u"sende", u"tænke", u"tænkte", u"hjælpe", u"hjælp") 
-eftervelkomst_receive2 = (u"blomster", u"buketter", u"flot") 
-eftervelkomst_receive3 = (u"alkohol", u"gin", u"rom", u"vodka", u"cognac", u"vin", u"øl", u"smag")
-eftervelkomst_receive4 = (u"chokolade", u"kakao", u"lækkerier", u"sødt")
-eftervelkomst_send1 = (u"hvem ønsker du at sende en buket?", u"hvem kan jeg hjælpe dig med at købe blomster til?")
-eftervelkomst_send2 = (u"hvem har du tænkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", u"hvem kan jeg hjælpe dig med at give en gave?")
-eftervelkomst_send3 = (u"Jeg elsker chokolade ", u"hvem kan jeg hjælpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
+Velkomst_receive = ("hej", "hello", "hi", "hejsa")
+Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg gøre for dig?"]
+eftervelkomst_receive1 = ("koebe", "se", "undersoege","sende", "taenke", "taenkte", "hjaelpe", "hjaelp") 
+eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
+eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
+eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
+eftervelkomst_send1 = ("hvem oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
+eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
+eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 
 
 def velkomst_check(message_text):
