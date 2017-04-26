@@ -62,10 +62,10 @@ def webhook():
 
 Velkomst_receive = ("hej", "hello", "hi")
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
-eftervelkomst_recieve1 = ("købe", "se", "undersøge","sende") 
+eftervelkomst_receive1 = ("købe", "se", "undersøge","sende") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
-eftervelkomst_recieve3 = ("alkohol", "gin", "rom", "vodka", "cognac","vin","oel","smag")
-eftervelkomst_recieve4 = ("chokolade", "kakao", "laekkerier", "soedt")
+eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac","vin","oel","smag")
+eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
 eftervelkomst_send1 = ("hvem har oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
 eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
 eftervelkomst_send2 = ("Jeg elsker chokolade ", "hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
@@ -79,11 +79,11 @@ def velkomst_check(message_text):
 
 def efter_velkomst(message_text):
     for word in message_text.split():
-        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive2:
+        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive2:
             return random.choice(eftervelkomst_send1)
-        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive3:
+        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive3:
             return random.choice(eftervelkomst_send2)
-        if word.lower() in eftervelkomst_recieve1 and word.lower() in eftervelkomst_receive4:
+        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send2)
     return "Jeg forstår ikke hvad du siger, hvilket produkt kan jeg hjaelpe dig med?" 
 
