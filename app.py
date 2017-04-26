@@ -16,13 +16,6 @@ def verify():
     # when the endpoint is registered as a webhook, it must echo back
     # the 'hub.challenge' value it receives in the query arguments
 
-curl -X POST -H "Content-Type: application/json" -d '{ 
-  "get_started":{
-    "payload":"Kom igang"
-  }
-}' "https://graph.facebook.com/v2.6/me/messenger_profile?access_token=EAAD5ZA0yoEewBAIh13Kg8HthCP5mBV90m9e2b98vLKTACbWGLD0ZAPlFzf7J4bgESHLp1XXyM45MP42z01AWZCB35Qhv6n0keaSGQZCxZCe3vAbd22tjwzHtgx3hgFRqs6kHCb757onZCtEWmqULI2aT5GMJtalSZBy90HvN7uYxgZDZD"
-
-    
     if request.args.get("hub.mode") == "subscribe" and request.args.get("hub.challenge"):
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
