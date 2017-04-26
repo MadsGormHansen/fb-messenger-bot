@@ -42,13 +42,7 @@ def webhook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"][u"text"]  # the message's text
                         
-                        for word in message_text.split():
-                            if word.lower() in Velkomst_receive:
-                               send_message(sender_id, velkomst_check(message_text))
-                            elif word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
-                               send_message(sender_id, efter_velkomst(message_text))
-                            else:
-                                send_message(sender_id, "Fuck dig!")
+                        send_message(sender_id, Send(message_text))
                      
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
@@ -63,7 +57,7 @@ def webhook():
 
 Velkomst_receive = ("hej", "hello", "hi")
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
-eftervelkomst_receive1 = ("købe", "se", "undersøge","sende") 
+eftervelkomst_receive1 = ("koebe", "se", "undersoege","sende") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac","vin","oel","smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
@@ -87,6 +81,15 @@ def efter_velkomst(message_text):
         if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send2)
     return "Jeg forstoer ikke hvad du siger, hvilket produkt kan jeg hjaelpe dig med?" 
+
+
+def Send(message_text):
+    for word in message_text.split():
+        if word.lower() in Velkomst_receive:
+            return velkomst_check(message_text)
+        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
+            return efter_velkomst(message_text)
+    return "fuck dig!"
 
 
 def send_message(recipient_id, message_text):
