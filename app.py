@@ -3,7 +3,7 @@ import os
 import sys
 import json
 import random
-import codecs
+import itertools
 
 import requests
 from flask import Flask, request
@@ -69,22 +69,23 @@ def velkomst_check(message_text):
     for word in message_text.split():
         if word.lower() in Velkomst_receive:
             return random.choice(Velkomst_send)
-
+    return hej
+    
 def efter_velkomst(message_text):
-    for word in message_text.split():
-        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive2:
+    for word1, word2 in message_text.split():
+        if word1.lower() in eftervelkomst_receive1 and word2.lower() in eftervelkomst_receive2:
             return random.choice(eftervelkomst_send1)
-        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive3:
+        if word1.lower() in eftervelkomst_receive1 and word2.lower() in eftervelkomst_receive3:
             return random.choice(eftervelkomst_send2)
-        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive4:
+        if word1.lower() in eftervelkomst_receive1 and word2.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send2)
-
+    return hej2
 
 def Send(message_text):
-    for word in message_text.split():
-        if word.lower() in Velkomst_receive:
+    for word1,word2 in message_text.split():
+        if word1.lower() in Velkomst_receive:
             return velkomst_check(message_text)
-        if word.lower() in eftervelkomst_receive1 and word.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
+        if word1.lower() in eftervelkomst_receive1 and word2.lower() in eftervelkomst_receive2 or eftervelkomst_receive3 or eftervelkomst_receive4:
             return efter_velkomst(message_text)
     return "fuck dig!"
 
