@@ -75,9 +75,9 @@ def efter_velkomst(message_text):
     for word in message_text.split():
         if word.lower() in eftervelkomst_receive2:
             return random.choice(eftervelkomst_send1)
-        if word1.lower() in eftervelkomst_receive3:
+        if word.lower() in eftervelkomst_receive3:
             return random.choice(eftervelkomst_send2)
-        if word1.lower() in eftervelkomst_receive4:
+        if word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send3)
     return "hejso"
 
