@@ -44,7 +44,7 @@ def webhook():
                         message_text = messaging_event["message"][u"text"]  # the message's text
                         reply_text = Send(message_text)
 
-                        old mesages = previous_messages(message_text, reply_text)
+                        old_messages = previous_messages.append(message_text, reply_text)
                         
                         send_message(sender_id, reply_text)
                      
