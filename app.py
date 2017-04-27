@@ -75,7 +75,7 @@ person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
 
-class previous_messages(list):
+class previous_messages(unicode):
     def _init_(number, message_text, reply_text):
         number.message_text = message_text
         number.reply_text = reply_text
