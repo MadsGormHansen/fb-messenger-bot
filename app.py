@@ -42,8 +42,11 @@ def webhook():
                         sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"][u"text"]  # the message's text
+                        reply_text = Send(message_text)
+
+                        previous_messages.push((message_text, reply_text))
                         
-                        send_message(sender_id, Send(message_text))
+                        send_message(sender_id, reply_text)
                      
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
@@ -56,7 +59,8 @@ def webhook():
 
     return "ok", 200
 
-Velkomst_receive = ("hej", "hello", "hi", "hejsa")
+Kom_i_gang = ("kom i gang")
+Hej_receive = ("hej", "hello", "hi", "hejsa")
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg gøre for dig?"]
 eftervelkomst_receive1 = ("koebe", "se", "undersoege","sende", "taenke", "taenkte", "hjaelpe", "hjaelp") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
@@ -65,13 +69,19 @@ eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
 eftervelkomst_send1 = ("hvem oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
 eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
+person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
+person_kaerlighed = ("kone", "kaereste")
+person_arbejde = ("medarbejder", "kollega", "teammate")
+person_foraeldre = ("mor", "far", "foraeldre")
 
+previous_messages = []
 
 def velkomst_check(message_text):
     for word in message_text.split():
-        if word.lower() in Velkomst_receive:
+        if word.lower() in Kom_i_gang:
             return random.choice(Velkomst_send)
     return "hejsa"
+
     
 def efter_velkomst(message_text):
     for word in message_text.split():
@@ -83,13 +93,15 @@ def efter_velkomst(message_text):
             return random.choice(eftervelkomst_send3)
     return "hejso"
 
+
 def Send(message_text):
     for word in message_text.split():
-        if word.lower() in Velkomst_receive:
-            return velkomst_check(message_text)
+        if word.lower() in Kom_i_gang:
+            return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
     return "fuck dig"
+
 
 
 def send_message(recipient_id, message_text):
