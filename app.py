@@ -44,7 +44,7 @@ def webhook():
                         message_text = messaging_event["message"][u"text"]  # the message's text
                         reply_text = Send(message_text)
 
-                        previous_messages.append((message_text, reply_text))
+                        previous_messages.append(message_text, reply_text)
                         
                         send_message(sender_id, reply_text)
                      
@@ -77,8 +77,8 @@ person_foraeldre = ("mor", "far", "foraeldre")
 
 class previous_messages(list):
     def _init_(number, message_text, reply_text):
-        number.message_text = []
-        number.reply_text = []
+        number.message_text = message_text
+        number.reply_text = reply_text
 
 def velkomst_check(message_text):
     for word in message_text.split():
