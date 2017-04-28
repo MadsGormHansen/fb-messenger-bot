@@ -59,7 +59,7 @@ def webhook():
 
     return "ok", 200
 
-Kom_i_gang = ("kom i gang")
+Kom_i_gang = ("kom igang")
 test = ("test")
 Hej_receive = ("hej", "hello", "hi", "hejsa")
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
