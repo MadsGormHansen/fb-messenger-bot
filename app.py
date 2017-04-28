@@ -77,7 +77,7 @@ listing = []
 
 def previous_messages(message_text,reply_text):
     for i,message_text,reply_text in enumerate(message_text,reply_text):
-        listing.append(previous_messages(message_text,reply_text))
+        listing.extend(previous_messages(message_text,reply_text))
 
 def velkomst_check(message_text):
     for word in message_text.split():
