@@ -77,7 +77,7 @@ person_foraeldre = ("mor", "far", "foraeldre")
 
 listing = []
 
-class previous_messages
+class previous_messages:
     def __init__(self,message_text,reply_text):
         self.message_text=message_text
         self.reply_text=reply_text
