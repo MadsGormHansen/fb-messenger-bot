@@ -55,8 +55,12 @@ def webhook():
                         pass
 
                     if messaging_event.get("postback"):  # user clicked/tapped "postback" button in earlier message
-                        pass
+                        sender_id = messaging_event["sender"]["id"]        # the facebook ID of the person sending you the message
+                        recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
+                        postback_text = messaging_event["postback"][u"payload"]  # the message's text
 
+                        send_postback(sender_id, postback(postback_text)) 
+                        
     return "ok", 200
 
 Kom_i_gang = ("kom igang")
@@ -94,6 +98,10 @@ def efter_velkomst(message_text):
             return random.choice(eftervelkomst_send3)
     return "hejso"
 
+def postback(postback_text):
+    for word in postback_text.split():
+        return random.choice(Velkomst_send)
+    return
 
 def Send(message_text):
     for word in message_text.split():
