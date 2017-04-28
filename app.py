@@ -46,10 +46,6 @@ def webhook():
                         
                         send_message(sender_id, reply_text)
 
-                        listing = []
-                        
-                        for message_text, reply_text in previous_messages(message_text,reply_text):
-                            listing.append(previous_messages(message_text,reply_text))
                          
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
