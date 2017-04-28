@@ -76,8 +76,6 @@ person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
-listing = []
-
 def velkomst_check(message_text):
     for word in message_text.split():
         if word.lower() in Kom_i_gang:
