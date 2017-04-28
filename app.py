@@ -47,8 +47,7 @@ def webhook():
                         send_message(sender_id, reply_text)
 
                         def previous_messages(message_text,reply_text):
-                           for message_text, reply_text in previous_messages(message_text,reply_text):
-                                listing.append(previous_messages(message_text,reply_text))
+                            listing.append(previous_messages(message_text,reply_text))
                         
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
@@ -103,10 +102,7 @@ def Send(message_text):
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
-        if word in test(message_text):
-            return listing(message_text)
     return "fuck dig"
-
 
 
 def send_message(recipient_id, message_text):
