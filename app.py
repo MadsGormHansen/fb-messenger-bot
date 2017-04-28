@@ -102,7 +102,7 @@ def Send(message_text):
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
-        if word.lower() in eftervelkomst_receive1:
+        if word.lower() in test:
             return listing
     return "fuck dig"
 
