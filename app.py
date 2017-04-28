@@ -43,8 +43,6 @@ def webhook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         message_text = messaging_event["message"][u"text"]  # the message's text
                         reply_text = Send(message_text)
-
-                        previous_messages(message_text, reply_text)
                         
                         send_message(sender_id, reply_text)
                      
@@ -74,10 +72,16 @@ person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
+class previous_messages(object)
+    def __init__(self,message_text, reply_text):
+        self.message_text = message_text
+        self.reply_text = reply_text
 
-def previous_messages(message_text, reply_text):
-       previous_messages.append(message_text, reply_text)
-       
+listing = []
+
+[(i,message_text,reply_text) for i, message_text, reply_text in enumerate(previous_messages(message_text,reply_text))]:
+    listing.append(previous_messages(message_text,reply_text))
+
 
 def velkomst_check(message_text):
     for word in message_text.split():
