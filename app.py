@@ -45,7 +45,10 @@ def webhook():
                         reply_text = Send(message_text)
                         
                         send_message(sender_id, reply_text)
-                     
+
+                        [(message_text, reply_text) for message_text, reply_text in previous_messages(message_text,reply_text)]:
+                            listing.append(previous_messages(message_text,reply_text))
+                         
                     if messaging_event.get("delivery"):  # delivery confirmation
                         pass
 
@@ -72,15 +75,14 @@ person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
-class previous_messages(object):
-    def __init__(self,message_text, reply_text):
+class previous_messages:
+    def __init__(self, message_text, reply_text):
         self.message_text = message_text
         self.reply_text = reply_text
 
 listing = []
 
-[(i,message_text,reply_text) for i, message_text, reply_text in enumerate(previous_messages(message_text,reply_text))]:
-    listing.append(previous_messages(message_text,reply_text))
+
 
 
 def velkomst_check(message_text):
