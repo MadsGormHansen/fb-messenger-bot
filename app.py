@@ -111,8 +111,8 @@ def Send(message_text):
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
-        if word.lower() in test:
-            return listing
+        if word.lower() in Soeren:
+            return Soeren_reply
     return "fuck dig"
 
 
