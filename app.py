@@ -59,7 +59,7 @@ def webhook():
                         recipient_id = messaging_event["recipient"]["id"]  # the recipient's ID, which should be your page's facebook ID
                         postback_text = messaging_event["postback"][u"payload"]  # the message's text
 
-                        send_postback(sender_id, postback(postback_text)) 
+                        send_message(sender_id, postback(postback_text)) 
                         
     return "ok", 200
 
