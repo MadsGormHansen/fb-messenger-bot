@@ -60,7 +60,7 @@ def webhook():
 
     return "ok", 200
 
-Kom_i_gang = ("kom i gang", "kom igang")
+Kom_i_gang = ("kom i gang")
 test = ("test")
 Hej_receive = ("hej", "hello", "hi", "hejsa")
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
@@ -102,6 +102,8 @@ def Send(message_text):
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
+        if word.lower() in eftervelkomst_receive1:
+            return listing
     return "fuck dig"
 
 
