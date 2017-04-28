@@ -78,6 +78,8 @@ person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarb
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
+Soeren = ("Soerens kaereste er gravid!")
+Soeren_reply = ("Maeske skulle han sende nogle blomster")
 
 listing = []        
 
