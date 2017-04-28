@@ -77,12 +77,6 @@ person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
-class previous_messages:
-    def __init__(self, message_text, reply_text):
-        self.message_text = message_text
-        self.reply_text = reply_text
-
-
 def velkomst_check(message_text):
     for word in message_text.split():
         if word.lower() in Kom_i_gang:
