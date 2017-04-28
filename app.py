@@ -46,6 +46,8 @@ def webhook():
                         
                         send_message(sender_id, reply_text)
 
+                        listing = []
+                        
                         def previous_messages(message_text,reply_text):
                             listing.append(previous_messages(message_text,reply_text))
                         
@@ -76,7 +78,7 @@ person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
-listing = [i for i in range(100)]
+
 
 def velkomst_check(message_text):
     for word in message_text.split():
