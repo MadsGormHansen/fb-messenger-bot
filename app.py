@@ -23,10 +23,10 @@ def verify():
 @app.route('/webhook', methods=['POST'])
 def webhook():
 
-  data = request.get_json()
-  log(data)
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
+
+  log(event)
 
 @page.handle_message
 def received_message(event):
@@ -35,9 +35,9 @@ def received_message(event):
   message = event.message_text
   time_of_message = event.timestamp
   message = event.message
-
-  page.send(sender_id, "thank you! your message is")
-
+  page.send(recipient_id, "thank you! your message is")
+  log(event)
+  
 @page.handle_postback
 def received_postback(event):
     sender_id = event.sender_id
@@ -49,33 +49,7 @@ def received_postback(event):
     print("Received postback for user %s and page %s with payload '%s' at %s"
           % (sender_id, recipient_id, payload, time_of_postback))
 
-    page.send(sender_id, "Postback called")
-
-def send_message(recipient_id, text):
-    # If we receive a text message, check to see if it matches any special
-    # keywords and send back the corresponding example. Otherwise, just echo
-    # the text we received.
-    special_keywords = {
-        "image": send_image,
-        "gif": send_gif,
-        "audio": send_audio,
-        "video": send_video,
-        "file": send_file,
-        "button": send_button,
-        "generic": send_generic,
-        "receipt": send_receipt,
-        "quick reply": send_quick_reply,
-        "read receipt": send_read_receipt,
-        "typing on": send_typing_on,
-        "typing off": send_typing_off,
-        "account linking": send_account_linking
-    }
-
-    if text in special_keywords:
-        special_keywords[text](recipient_id)
-    else:
-        page.send(recipient_id, text, callback=send_text_callback, notification_type=NotificationType.REGULAR)
-
+    page.send(recipient_id, "Postback called")
 
 @page.after_send
 def after_send(payload, response):
