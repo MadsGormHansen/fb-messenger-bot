@@ -4,7 +4,7 @@ import sys
 import json
 import random
 import itertools
-
+from fbmq import Attachment, Template, QuickReply, Page
 import requests
 from flask import Flask, request
 
@@ -71,6 +71,7 @@ eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenk
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
+eftervelkomst_receive5 = ("gave", "pakke")
 eftervelkomst_send1 = ("hvem oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
 eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
@@ -83,13 +84,7 @@ Soeren_reply = ("Maeske skulle han sende nogle blomster")
 
 listing = []        
 
-def velkomst_check(message_text):
-    for word in message_text.split():
-        if word.lower() in Kom_i_gang:
-            return random.choice(Velkomst_send)
-    return "hejsa"
-
-    
+  
 def efter_velkomst(message_text):
     for word in message_text.split():
         if word.lower() in eftervelkomst_receive2:
@@ -98,7 +93,8 @@ def efter_velkomst(message_text):
             return random.choice(eftervelkomst_send2)
         if word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send3)
-    return "hejso"
+    return quick_replies_1
+
 
 def postback(postback_text):
     for word in postback_text.split():
@@ -111,9 +107,20 @@ def Send(message_text):
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
-        if word.lower() in Soeren:
-            return Soeren_reply
-    return "fuck dig"
+    return quick_replies_1
+
+
+quick_replies_1 = [
+  QuickReply(title="Blomster", payload="PICK_Blomster"),
+  QuickReply(title="Oel, vin og alkohol", payload="PICK_Alkohol"),
+  QuickReply(title="Chokolade", payload="PICK_Chokolade"),
+  QuickReply(title="Giv en gave", payload="PICK_Gave")
+]
+
+page.send(recipient_id, 
+          "Jeg forstaer ikke, hvad oensker du at undersoege?"
+          quick_replies=quick_replies,
+          metadata="DEVELOPER_DEFINED_METADATA")
 
 
 def send_message(recipient_id, message_text):
@@ -147,3 +154,4 @@ def log(message):  # simple wrapper for logging to stdout on heroku
 
 if __name__ == '__main__':
     app.run(debug=True)
+
