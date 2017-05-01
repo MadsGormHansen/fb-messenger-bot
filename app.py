@@ -13,7 +13,7 @@ def message_handler(event):
   """:type event: fbmq.Event"""
   sender_id = event.sender_id
   message = event.message_text
-  
+
   page.send(sender_id, "thank you! your message is '%s'" % message)
 
 @page.after_send
