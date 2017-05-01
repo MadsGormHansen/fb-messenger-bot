@@ -107,7 +107,7 @@ def Send(message_text):
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message_text)
-    return quick_replies_1
+    return quickreply1
 
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
