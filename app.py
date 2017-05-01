@@ -1,8 +1,13 @@
 import os
+import sys
+import json
 from flask import Flask, request
 from fbmq import Page
 
+
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
+
+app = Flask(__name__)
 
 @app.route('/webhook', methods=['POST'])
 def webhook():
