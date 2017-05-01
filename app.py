@@ -114,7 +114,7 @@ def Send(message_text):
 def callback_picked_genre(payload, event):
   print(payload, event)
   
-quick_replies_1 = [
+quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
   QuickReply(title="Oel, vin og alkohol", payload="PICK_Alkohol"),
   QuickReply(title="Chokolade", payload="PICK_Chokolade"),
