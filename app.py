@@ -110,6 +110,10 @@ def Send(message_text):
     return quick_replies_1
 
 
+@page.callback(['PICK_Blomster', 'PICK_Alkohol', 'PICK_Chokolade','Giv en gave'])
+def callback_picked_genre(payload, event):
+  print(payload, event)
+  
 quick_replies_1 = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
   QuickReply(title="Oel, vin og alkohol", payload="PICK_Alkohol"),
@@ -117,7 +121,7 @@ quick_replies_1 = [
   QuickReply(title="Giv en gave", payload="PICK_Gave")
 ]
 
-page.send(recipient_id, 
+page.send(recipient_id,
           "Jeg forstaer ikke, hvad oensker du at undersoege?"
           quick_replies=quick_replies,
           metadata="DEVELOPER_DEFINED_METADATA")
