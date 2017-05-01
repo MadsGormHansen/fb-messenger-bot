@@ -33,7 +33,7 @@ def received_message(event):
   message = event.message_text
   time_of_message = event.timestamp
   message = event.message
-  page.send(recipient_id, "thank you! your message is")
+  page.send(sender_id, "thank you! your message is")
 
   
 @page.handle_postback
