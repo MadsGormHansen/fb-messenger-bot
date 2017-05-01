@@ -19,14 +19,12 @@ def verify():
         return request.args["hub.challenge"], 200
 
     return "Hello world", 200
-
-@app.route('/webhook', methods=['POST'])
+  
+@app.route('/', methods=['POST'])
 def webhook():
-
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
 
-  log(event)
 
 @page.handle_message
 def received_message(event):
@@ -37,6 +35,7 @@ def received_message(event):
   message = event.message
   page.send(recipient_id, "thank you! your message is")
   log(event)
+
   
 @page.handle_postback
 def received_postback(event):
