@@ -93,7 +93,7 @@ def efter_velkomst(message_text):
             return random.choice(eftervelkomst_send2)
         if word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send3)
-    return quick_replies_1
+    return quickreply1
 
 
 def postback(postback_text):
@@ -111,8 +111,8 @@ def Send(message_text):
 
 
 @page.callback(['PICK_Blomster', 'PICK_Alkohol', 'PICK_Chokolade','Giv en gave'])
-def callback_picked_genre(payload, entry):
-  print(payload, entry)
+def callback_picked_genre(payload, message_text):
+  print(payload, message_text)
   
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
@@ -121,7 +121,7 @@ quick_replies = [
   QuickReply(title="Giv en gave", payload="PICK_Gave")
 ]
 
-page.send(recipient_id,
+quickreply1= send_message(sender_id,
           "Jeg forstaer ikke, hvad oensker du at undersoege?"
           quick_replies=quick_replies,
           metadata="DEVELOPER_DEFINED_METADATA")
