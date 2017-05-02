@@ -26,6 +26,7 @@ def verify():
 def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
+  global listing
 
 
 @page.handle_message
@@ -35,10 +36,10 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     message = event.message
-    page.send(sender_id, "reply_text")
+    page.send(sender_id, text)
     #listing.append((message_text,reply_text))
 
-
+text=("hej")
   
 @page.handle_postback
 def received_postback(event):
