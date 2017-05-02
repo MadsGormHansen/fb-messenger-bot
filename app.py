@@ -38,13 +38,13 @@ def received_message(event):
     message = event.message
     reply_text = send(message)
     page.send(sender_id, reply_text)
-    listing.append((message_text,reply_text))
+    listing.append((message,reply_text))
 
 
 text=("hej")
 
 def send(message):
-    for word in message.split():
+    for word in message:
         if word.lower() in text:
             return "hej"
     return "none"
