@@ -60,9 +60,9 @@ person_foraeldre = ("mor", "far", "foraeldre")
 
 def send(message)
     for word in message_text.split():
-        if word.lower() in Hej_receive
+        if word.lower() in Hej_receive:
             return random.choice(Velkomst_send)
-    return "none"
+    return "none
 
   
 @page.handle_postback
