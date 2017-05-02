@@ -56,8 +56,8 @@ text= ["hej"]
 
 listing = []
 
-def postback(postback_text):
-    for word in postback_text.split():
+def postback(payload):
+    for word in payload.split():
         if word.lower() in Kom_i_gang:
             return random.choice(Velkomst_send)
     return "none"
@@ -104,7 +104,7 @@ def received_postback(event):
     time_of_postback = event.timestamp
     payload = event.postback_payload
     
-    page.send(sender_id, postback(postback_text))
+    page.send(sender_id, postback(payload))
 
 @page.after_send
 def after_send(payload, response):
