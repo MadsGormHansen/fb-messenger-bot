@@ -70,18 +70,21 @@ def efter_velkomst(message):
     return 0
 
 
-def person_detect(message):
+def person_detectblomster(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return 1
+            return "har din %s nogle ynglings blomster?" % (word)
     return 0
    
 
 def send(message):
-    message_eftervelkomst= efter_velkomst(message)
-    if message_eftervelkomst is 1:
+    eftervelkomstvar= efter_velkomst(message)
+    persondetectvar= person_detectblomster(message)
+    if eftervelkomstvar is 1 and persondetectvar != 0:
+        return persondetectvar
+    elif eftervelkomstvar is 1:
         return random.choice(eftervelkomst_send1)
-    elif message_eftervelkomst is 2:
+    elif eftervelkomstvar is 2:
         return random.choice(eftervelkomst_send2)
     else: return "none"
 
