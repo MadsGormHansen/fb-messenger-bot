@@ -74,7 +74,7 @@ def person_detectblomster(message):
     for word in message.split():
         if word.lower() in person_detect:
             return "abc adfjkdfj"
-        return "none"
+    return "none"
    
 
 def send(message):
