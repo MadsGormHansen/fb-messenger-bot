@@ -44,6 +44,14 @@ person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
 
+quick_replies = [
+  QuickReply(title="Blomster", payload="PICK_Blomster"),
+  QuickReply(title="Alkohol", payload="PICK_Alkohol"),
+  QuickReply(title="Chokolade", payload="PICK_chokolade"),
+  QuickReply(title="Gave", payload="PICK_Gave")
+]
+
+
 text= ["hej"]
 
 listing = []
@@ -80,8 +88,10 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
+    if reply_text != "none":
+        page.send(sender_id, reply_text)
+    else: page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     listing.append((message, reply_text))
-    page.send(sender_id, reply_text)
 
   
 @page.handle_postback
