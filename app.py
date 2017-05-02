@@ -3,7 +3,7 @@ import sys
 import json
 import random
 from flask import Flask, request
-from fbmq import Page
+from fbmq import Attachment, Template, QuickReply, Page
 
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
@@ -88,9 +88,11 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-    if reply_text != "none":
-        page.send(sender_id, reply_text)
-    else: page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    
+    if reply_text == "none":
+        page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    else: page.send(sender_id, reply_text)
+
     listing.append((message, reply_text))
 
   
