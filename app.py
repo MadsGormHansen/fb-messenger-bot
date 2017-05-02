@@ -79,7 +79,7 @@ def person_detect(message):
 
 def send(message):
     message_eftervelkomst= efter_velkomst(message)
-    if message_eftervelkomstis is 1:
+    if message_eftervelkomst is 1:
         return random.choice(eftervelkomst_send1)
     elif message_eftervelkomst is 2:
         return random.choice(eftervelkomst_send2)
