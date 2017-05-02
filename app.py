@@ -17,7 +17,7 @@ def verify():
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
-
+    
     return "Hello world", 200
 
 
@@ -26,7 +26,6 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
 
-global listing
 
 @page.handle_message
 def received_message(event):
@@ -52,13 +51,13 @@ eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
 eftervelkomst_send1 = ("hvem oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
 eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
-eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
+eftervelkomst_send3 = ("Jeg elsker chokolade ", "hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
-def send(message)
+def send(message):
     for word in message_text.split():
         if word.lower() in Hej_receive:
             return random.choice(Velkomst_send)
