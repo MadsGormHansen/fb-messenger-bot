@@ -60,14 +60,14 @@ listing = []
 def efter_velkomst(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive2:
-             return "a"
-        if word.lower() in eftervelkomst_receive2:
-            return "b"
-        if word.lower() in eftervelkomst_receive3:
-            return "c"
-        if word.lower() in eftervelkomst_receive4:
-            return "d"
-    return "x"
+            efter_velkomst(message) == 1
+        elif word.lower() in eftervelkomst_receive2:
+            efter_velkomst(message) == 2
+        elif word.lower() in eftervelkomst_receive3:
+            efter_velkomst(message) == 3
+        elif word.lower() in eftervelkomst_receive4:
+            efter_velkomst(message) == 4
+        else: efter_velkomst(message) == 0
 
 #def person_detect(message):
  #   for word in message.split():
@@ -77,10 +77,10 @@ def efter_velkomst(message):
    
 
 def send(message):
-    if efter_velkomst(message) == "a":
+    if efter_velkomst(message) == 1:
         return random(eftervelkomst_send1)
-    elif efter_velkomst(message) == "b":
-        return person_detect(message)
+    elif efter_velkomst(message) == 2:
+        return random(eftervelkomst_send2)
     else: return "none"
 
 
