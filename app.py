@@ -65,9 +65,9 @@ def efter_velkomst(message):
 def Send(message):
     for word in message.split():
         if word.lower() in Kom_i_gang:
-            return velkomst_check(message_text) 
+            return velkomst_check(message) 
         if word.lower() in eftervelkomst_receive1:
-            return efter_velkomst(message_text)
+            return efter_velkomst(message)
     return "none"
 
 
