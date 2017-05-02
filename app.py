@@ -44,6 +44,7 @@ person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
 
+
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
   QuickReply(title="Alkohol", payload="PICK_Alkohol"),
@@ -58,18 +59,24 @@ listing = []
 
 def efter_velkomst(message):
     for word in message.split():
-        if word.lower() in eftervelkomst_receive2:
-            return random.choice(eftervelkomst_send1)
+        if word.lower() in eftervelkomst_receive2 and word.lower() in person_detect:
+            return person_detect1(message)
         if word.lower() in eftervelkomst_receive3:
             return random.choice(eftervelkomst_send2)
         if word.lower() in eftervelkomst_receive4:
             return random.choice(eftervelkomst_send3)
-    return "none"
+    return "none1"
 
+def person_detect1(message)
+    for word in message.split():
+        if word.lower() in person_detect:
+            return "har din %s nogle ynglings blomster?" % (word)
+    return "none"
+    
 def send(message):
     for word in message.split():
         if word.lower() in Kom_i_gang:
-            return velkomst_check(message) 
+            return velkomst_check(message)
         if word.lower() in eftervelkomst_receive1:
             return efter_velkomst(message)
     return "none"
