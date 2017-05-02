@@ -41,7 +41,7 @@ def send(message):
 def received_message(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    message = event.message_text
+    str(message) = event.message_text
     time_of_message = event.timestamp
     message = event.message
     reply_text = send(message)
