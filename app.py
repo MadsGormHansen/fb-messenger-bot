@@ -22,11 +22,13 @@ def verify():
     return "Hello world", 200
 
 
+global listing
+
 @app.route('/', methods=['POST'])
 def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
-  global listing
+  
 
 
 @page.handle_message
