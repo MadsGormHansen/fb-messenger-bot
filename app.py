@@ -79,7 +79,7 @@ def person_detectblomster(message):
 
 def send(message):
     eftervelkomstvar= efter_velkomst(message)
-    if eftervelkomstvar is 1 and persondetectvar != 0:
+    if eftervelkomstvar is 1 and person_detectblomster(message) != 0:
         return person_detectblomster(message)
     elif eftervelkomstvar is 1:
         return random.choice(eftervelkomst_send1)
