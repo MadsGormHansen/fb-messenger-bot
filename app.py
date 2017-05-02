@@ -52,8 +52,8 @@ def postback(postback_text):
         return random.choice(Velkomst_send)
     return "none"
 
-def efter_velkomst(message_text):
-    for word in message_text.split():
+def efter_velkomst(message):
+    for word in message.split():
         if word.lower() in eftervelkomst_receive2:
             return random.choice(eftervelkomst_send1)
         if word.lower() in eftervelkomst_receive3:
@@ -62,8 +62,8 @@ def efter_velkomst(message_text):
             return random.choice(eftervelkomst_send3)
     return "none"
 
-def Send(message_text):
-    for word in message_text.split():
+def Send(message):
+    for word in message.split():
         if word.lower() in Kom_i_gang:
             return velkomst_check(message_text) 
         if word.lower() in eftervelkomst_receive1:
