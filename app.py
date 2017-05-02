@@ -32,7 +32,7 @@ def webhook():
 text=("hej")
 
 def send(message):
-    for word in message.split():
+    for word in str(message).split():
         if word.lower() in text:
             return "hej"
     return "none"
@@ -41,7 +41,7 @@ def send(message):
 def received_message(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    str(message) = event.message_text
+    message = event.message_text
     time_of_message = event.timestamp
     message = event.message
     reply_text = send(message)
