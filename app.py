@@ -77,9 +77,9 @@ def efter_velkomst(message):
    
 
 def send(message):
-    if efter_velkomst(message) is "a":
+    if efter_velkomst(message) == "a":
         return random(eftervelkomst_send1)
-    elif efter_velkomst(message) is "b":
+    elif efter_velkomst(message) == "b":
         return person_detect(message)
     else: return "none"
 
