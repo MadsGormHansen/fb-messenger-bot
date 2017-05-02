@@ -69,18 +69,20 @@ def efter_velkomst(message):
             return 4
     return 0
 
-#def person_detect(message):
- #   for word in message.split():
-  #      if word.lower() in person_detect:
-   #         return "person_target"
-   # return "x"
+
+def person_detect(message):
+    for word in message.split():
+        if word.lower() in person_detect:
+            return 1
+    return 0
    
 
 def send(message):
-    if efter_velkomst(message) is 1:
-        return random(eftervelkomst_send1)
-    elif efter_velkomst(message) is 2:
-        return random(eftervelkomst_send2)
+    message_eftervelkomst= efter_velkomst(message)
+    if message_eftervelkomstis is 1:
+        return random.choice(eftervelkomst_send1)
+    elif message_eftervelkomst is 2:
+        return random.choice(eftervelkomst_send2)
     else: return "none"
 
 
