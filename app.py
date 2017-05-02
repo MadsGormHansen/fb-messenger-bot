@@ -30,7 +30,7 @@ def webhook():
   
 
 text=("hej")
-
+listing= []
 def send(message):
     for word in str(message).split():
         if word.lower() in text:
