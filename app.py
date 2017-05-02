@@ -28,26 +28,23 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
   
-
 text=("hej")
 
-listing= []
+listing = []
 
-def send(message_text):
-    for word in message_text.split():
+def send(message):
+    for word in message.split():
         if word.lower() in text:
             return "hej"
     return "none"
 
 @page.handle_message
 def received_message(event):
+    global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
     time_of_message = event.timestamp
-    message = event.message
-    json_acceptable_string = message.replace("'", "\"")
-    message_text = json.loads(json_acceptable_string)
     listing.append((message, send(message)))
     page.send(sender_id, send(message))
 
