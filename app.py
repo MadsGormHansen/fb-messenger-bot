@@ -67,7 +67,7 @@ def efter_velkomst(message):
             return random.choice(eftervelkomst_send3)
     return "none1"
 
-def person_detect1(message)
+def person_detect1(message):
     for word in message.split():
         if word.lower() in person_detect:
             return "har din %s nogle ynglings blomster?" % (word)
