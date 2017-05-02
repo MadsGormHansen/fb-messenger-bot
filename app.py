@@ -36,10 +36,19 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     message = event.message
-    page.send(sender_id, text)
-    #listing.append((message_text,reply_text))
+    reply_text = send(message)
+    page.send(sender_id, reply_text)
+    listing.append((message_text,reply_text))
+
 
 text=("hej")
+
+def send(message):
+    for word in message.split():
+        if word.lower() in text:
+            return "hej"
+    return "none"
+
   
 @page.handle_postback
 def received_postback(event):
