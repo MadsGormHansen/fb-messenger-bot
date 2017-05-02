@@ -29,6 +29,13 @@ def webhook():
   return "ok"
   
 
+text=("hej")
+
+def send(message):
+    for word in message.split():
+        if word.lower() in text:
+            return "hej"
+    return "none"
 
 @page.handle_message
 def received_message(event):
@@ -41,13 +48,6 @@ def received_message(event):
     page.send(sender_id, reply_text)
     listing.append((message,reply_text))
 
-    text=("hej")
-
-    def send(message):
-        for word in message:
-            if word.lower() in text:
-                return "hej"
-        return "none"
 
   
 @page.handle_postback
