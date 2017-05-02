@@ -66,7 +66,7 @@ def received_postback(event):
 @page.after_send
 def after_send(payload, response):
   """:type payload: fbmq.Payload"""
-  print(message)
+  print("complete")
   
 
 
