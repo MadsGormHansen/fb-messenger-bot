@@ -60,29 +60,29 @@ listing = []
 def efter_velkomst(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive2:
-             return 1
+             return "a"
         if word.lower() in eftervelkomst_receive2:
-            return 2
+            return "b"
         if word.lower() in eftervelkomst_receive3:
-            return 3
+            return "c"
         if word.lower() in eftervelkomst_receive4:
-            return 4
-    return 0
+            return "d"
+    return "x"
 
 def person_detect(message):
     for word in message.split():
         if word.lower() in person_detect:
             return "person_target"
-    return 0
+    return "x"
 
 
 def send(message):
     for word in message.split():
         if word.lower() in Kom_i_gang:
             return velkomst_check(message)
-        if efter_velkomst(message) == 1 and person_detect(message) == 0:
+        if efter_velkomst(message) == "a" and person_detect(message) == "x":
             return random(eftervelkomst_send1)
-        if efter_velkomst(message) == 1 and person_detect(message) != 0:
+        if efter_velkomst(message) == "a" and person_detect(message) != "x":
             return person_detect(message)
     return "none"
 
