@@ -72,7 +72,7 @@ def efter_velkomst(message):
 def person_detect(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return "har din %s nogle ynglings blomster?" % (word)
+            return "person_target"
     return 0
 
 
