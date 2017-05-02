@@ -73,7 +73,8 @@ def efter_velkomst(message):
 def person_detectblomster(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return word.lower()
+            word1 = word.lower()
+            return word1
     return "none"
    
 
