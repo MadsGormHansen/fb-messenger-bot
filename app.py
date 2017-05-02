@@ -58,9 +58,9 @@ text= ["hej"]
 listing = []
 
 def efter_velkomst(message):
-    for word in message.split():
+    for word, word2 in message.split():
         if word.lower() in eftervelkomst_receive2:
-            if word.lower() in person_detect:
+            if word2.lower() in person_detect:
                 return person_detect1(message)
             else: return random.choice(eftervelkomst_send1)
         if word.lower() in eftervelkomst_receive3:
