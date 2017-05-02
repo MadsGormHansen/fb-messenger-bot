@@ -35,34 +35,9 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     message = event.message
-    reply_text = send(message)
-    page.send(sender_id, reply_text)
-    listing.append((message_text,reply_text))
+    page.send(sender_id, "reply_text")
+    #listing.append((message_text,reply_text))
 
-
-listing = []
-Kom_i_gang = ("kom igang")
-test = ("test")
-Hej_receive = ("hej", "hello", "hi", "hejsa")
-Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
-eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
-eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
-eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
-eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
-eftervelkomst_receive5 = ("gave", "pakke")
-eftervelkomst_send1 = ("hvem oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
-eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
-eftervelkomst_send3 = ("Jeg elsker chokolade ", "hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
-person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
-person_kaerlighed = ("kone", "kaereste")
-person_arbejde = ("medarbejder", "kollega", "teammate")
-person_foraeldre = ("mor", "far", "foraeldre")
-
-def send(message):
-    for word in message_text.split():
-        if word.lower() in Hej_receive:
-            return random.choice(Velkomst_send)
-    return "none
 
   
 @page.handle_postback
