@@ -29,6 +29,7 @@ def webhook():
   return "ok"
   
 Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
+Kom_i_gang =["Kom i gang"]
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
@@ -62,7 +63,7 @@ def efter_velkomst(message):
             return random.choice(eftervelkomst_send3)
     return "none"
 
-def Send(message):
+def send(message):
     for word in message.split():
         if word.lower() in Kom_i_gang:
             return velkomst_check(message) 
@@ -78,8 +79,9 @@ def received_message(event):
     recipient_id = event.recipient_id
     message = event.message_text
     time_of_message = event.timestamp
-    listing.append((message, send(message)))
-    page.send(sender_id, send(message))
+    reply_text = send(message)
+    listing.append((message, reply_text))
+    page.send(sender_id, reply_text)
 
   
 @page.handle_postback
@@ -87,9 +89,8 @@ def received_postback(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
-
     payload = event.postback_payload
-
+    
     page.send(sender_id, postback(postback_text))
 
 @page.after_send
