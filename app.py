@@ -19,22 +19,28 @@ def verify():
         return request.args["hub.challenge"], 200
 
     return "Hello world", 200
-  
+
+
 @app.route('/', methods=['POST'])
 def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
 
+global listing
+
 @page.handle_message
 def received_message(event):
-  sender_id = event.sender_id
-  recipient_id = event.recipient_id
-  message = event.message_text
-  time_of_message = event.timestamp
-  message = event.message
-  page.send(sender_id, "thank you! your message is")
+    sender_id = event.sender_id
+    recipient_id = event.recipient_id
+    message = event.message_text
+    time_of_message = event.timestamp
+    message = event.message
+    reply_text = send(message)
+    page.send(sender_id, reply_text)
+    listing.append((message_text,reply_text))
 
 
+listing = []
 Kom_i_gang = ("kom igang")
 test = ("test")
 Hej_receive = ("hej", "hello", "hi", "hejsa")
@@ -52,6 +58,11 @@ person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
+def send(message)
+    for word in message_text.split():
+        if word.lower() in Hej_receive
+            return random.choice(Velkomst_send)
+    return "none"
 
   
 @page.handle_postback
