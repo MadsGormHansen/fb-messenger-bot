@@ -29,7 +29,7 @@ def webhook():
   return "ok"
   
 
-text=("hej")
+text=('hej')
 
 listing= []
 
