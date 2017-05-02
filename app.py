@@ -34,7 +34,7 @@ text=("hej")
 listing= []
 
 def send(text_message):
-    for word in text_message.split():
+    for word in text_message:
         if word.lower() in text:
             return "hej"
     return "none"
@@ -46,7 +46,6 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     message = event.message
-    text_message = str(message)
     listing.append((message, send(message)))
     page.send(sender_id, send(message))
 
@@ -67,7 +66,7 @@ def received_postback(event):
 @page.after_send
 def after_send(payload, response):
   """:type payload: fbmq.Payload"""
-  print("complete")
+  print(message)
   
 
 
