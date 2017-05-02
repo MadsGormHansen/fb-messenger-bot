@@ -80,9 +80,9 @@ def send(message):
     for word in message.split():
         if word.lower() in Kom_i_gang:
             return velkomst_check(message)
-        if efter_velkomst(message) == "a" and person_detect(message) == "x":
+        if efter_velkomst(message) is "a" and person_detect(message) is "x":
             return random(eftervelkomst_send1)
-        if efter_velkomst(message) == "a" and person_detect(message) != "x":
+        if efter_velkomst(message) is "a" and person_detect(message) is not "x":
             return person_detect(message)
     return "none"
 
