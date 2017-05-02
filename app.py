@@ -22,7 +22,6 @@ def verify():
     return "Hello world", 200
 
 
-global listing
 
 @app.route('/', methods=['POST'])
 def webhook():
@@ -42,14 +41,13 @@ def received_message(event):
     page.send(sender_id, reply_text)
     listing.append((message,reply_text))
 
+    text=("hej")
 
-text=("hej")
-
-def send(message):
-    for word in message:
-        if word.lower() in text:
-            return "hej"
-    return "none"
+    def send(message):
+        for word in message:
+            if word.lower() in text:
+                return "hej"
+        return "none"
 
   
 @page.handle_postback
