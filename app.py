@@ -125,12 +125,15 @@ def received_message(event):
   
 @page.handle_postback
 def received_postback(event):
+    global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
     payload = event.postback_payload
+    reply_payload = random.choice(Velkomst_send)
+    page.send(sender_id, reply_payload)
     
-    page.send(sender_id, random.choice(Velkomst_send))
+    listing.append((payload, reply_payload))
 
 @page.after_send
 def after_send(payload, response):
