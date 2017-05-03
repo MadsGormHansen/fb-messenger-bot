@@ -106,6 +106,7 @@ def send(message):
         elif eftervelkomstvar is 4:
             return random.choice(eftervelkomst_send4)
         else: return "none"
+    else: return "none"
 
 @page.handle_message
 def received_message(event):
