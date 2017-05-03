@@ -106,7 +106,8 @@ def send(message):
         elif eftervelkomstvar is 4:
             return random.choice(eftervelkomst_send4)
         else: return "none"
-    else: return "none"
+    else: return "test" 
+    
 
 @page.handle_message
 def received_message(event):
@@ -119,6 +120,8 @@ def received_message(event):
     
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    elif reply_text == "test"
+        listing
     else: page.send(sender_id, reply_text)
 
     listing.append((message, reply_text))
