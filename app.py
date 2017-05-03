@@ -92,7 +92,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    if listing.pop() == (.,Velkomst_send) and first_trigger_var is 1:
+    if listing.pop() == (message, Velkomst_send) and first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar is 1:
