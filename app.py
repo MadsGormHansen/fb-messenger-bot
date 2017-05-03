@@ -93,7 +93,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    if first_trigger_var is 1:
+    if listing.pop() == (message,Velkomst_send) and first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar is 1:
@@ -122,7 +122,7 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    listing.extend([message, reply_text])
+    listing.append((message, reply_text))
 
   
 @page.handle_postback
