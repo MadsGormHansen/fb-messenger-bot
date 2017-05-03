@@ -61,11 +61,11 @@ def efter_velkomst(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive2:
             return 1
-        elif word.lower() in eftervelkomst_receive2:
-            return 2
         elif word.lower() in eftervelkomst_receive3:
-            return 3
+            return 2
         elif word.lower() in eftervelkomst_receive4:
+            return 3
+        elif word.lower() in eftervelkomst_receive5:
             return 4
     return 0
 
