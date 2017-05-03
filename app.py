@@ -54,7 +54,7 @@ quick_replies = [
 
 
 text= ["hej"]
-listing = []
+global listing = []
 
 def efter_velkomst(message):
     for word in message.split():
