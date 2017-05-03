@@ -54,7 +54,6 @@ quick_replies = [
 
 
 text= ["hej"]
-
 listing = []
 
 def efter_velkomst(message):
@@ -111,7 +110,6 @@ def send(message):
 
 @page.handle_message
 def received_message(event):
-    global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
