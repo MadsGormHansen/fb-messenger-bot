@@ -23,6 +23,7 @@ def verify():
 
 
 
+
 @app.route('/', methods=['POST'])
 def webhook():
   page.handle_webhook(request.get_data(as_text=True))
@@ -54,7 +55,8 @@ quick_replies = [
 
 
 text= ["hej"]
-global listing = []
+global listing
+listing = []
 
 def efter_velkomst(message):
     for word in message.split():
