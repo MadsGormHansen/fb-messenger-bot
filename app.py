@@ -53,8 +53,7 @@ quick_replies = [
   QuickReply(title="Gave", payload="PICK_Gave")
 ]
 
-global listing
-listing = [a,b]
+listing = ["a","b"]
 
 def efter_velkomst(message):
     for word in message.split():
@@ -110,6 +109,7 @@ def send(message):
 
 @page.handle_message
 def received_message(event):
+    global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
