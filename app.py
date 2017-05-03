@@ -53,6 +53,7 @@ quick_replies = [
   QuickReply(title="Gave", payload="PICK_Gave")
 ]
 
+global listing
 listing = []
 
 def efter_velkomst(message):
@@ -130,7 +131,6 @@ def received_message(event):
 def received_postback(event):
     global listing
     sender_id = event.sender_id
-    print listing
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
     payload = event.postback_payload
