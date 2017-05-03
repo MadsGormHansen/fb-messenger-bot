@@ -99,7 +99,7 @@ def send(message):
             return random.choice(eftervelkomst_send1)
         elif eftervelkomstvar is 2 and person_detectalkoholvar != "none":
             return person_detectalkoholvar
-        elif eftervelkomstvar is 2   
+        elif eftervelkomstvar is 2:
             return random.choice(eftervelkomst_send2)
         elif eftervelkomstvar is 3:
             return random.choice(eftervelkomst_send3)
