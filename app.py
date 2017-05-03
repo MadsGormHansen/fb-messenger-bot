@@ -42,7 +42,7 @@ person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarb
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
-Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup" 
+Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup")
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
 quick_replies = [
