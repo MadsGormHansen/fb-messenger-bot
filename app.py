@@ -113,6 +113,7 @@ def received_message(event):
     global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
+    print listing
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
