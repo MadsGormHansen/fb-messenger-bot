@@ -53,10 +53,8 @@ quick_replies = [
   QuickReply(title="Gave", payload="PICK_Gave")
 ]
 
-
-text= ["hej"]
 global listing
-listing = []
+listing = [a,b]
 
 def efter_velkomst(message):
     for word in message.split():
@@ -107,7 +105,7 @@ def send(message):
         elif eftervelkomstvar is 4:
             return random.choice(eftervelkomst_send4)
         else: return "none"
-    else: return "none"
+    else: return listing
     
 
 @page.handle_message
