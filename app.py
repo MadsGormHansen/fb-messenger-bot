@@ -29,7 +29,7 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
   
-Velkomst_send = ["Velkommen til Flora, Hvad kan jeg hjaelpe med?", "Velkommen til flora, jeg er en chatbot om meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
+Velkomst_send = ["Velkommen til flora, jeg er en chatbot som meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
 Kom_i_gang =["Kom igang"]
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
