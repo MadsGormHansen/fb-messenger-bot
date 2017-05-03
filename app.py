@@ -85,6 +85,8 @@ def first_trigger(message):
         if word.lower() in eftervelkomst_receive1:
             return 1
 
+
+
 def send(message):
     global listing
     first_trigger_var= first_trigger(message)
@@ -140,7 +142,9 @@ def received_postback(event):
 @page.after_send
 def after_send(payload, response):
   """:type payload: fbmq.Payload"""
-  print("complete")
+    global listing
+    print("complete")
+    print listing
   
 
 
