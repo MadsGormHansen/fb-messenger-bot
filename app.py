@@ -42,8 +42,8 @@ person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarb
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
-
-
+Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup" 
+Andledning_send = ("hvilken anledning gives der blomster til?")
 
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
@@ -73,21 +73,39 @@ def efter_velkomst(message):
 def person_detectblomster(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return "abc" +" " + str(word)+ " " + "adfjkdfj"
+            return "Har din" +" " + str(word)+ " " + "nogle ynglings blomster?"
     return "none"
-   
+
+def person_detectalkohol(message):
+    for word in message.split():
+        if word.lower() in person_detect:
+            return "Vil din" +" " + str(word)+ " " + "vaere mest interesseret i oel, vin eller alkohol?"
+    return "none"
+
+def first_trigger(message):
+    for word in message.split():
+        if word.lower() in eftervelkomst_receive1:
+            return 1
 
 def send(message):
+    first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
-    if eftervelkomstvar is 1 and person_detectblomstervar != "none":
-        return person_detectblomstervar
-    elif eftervelkomstvar is 1:
-        return random.choice(eftervelkomst_send1)
-    elif eftervelkomstvar is 2:
-        return random.choice(eftervelkomst_send2)
-    else: return "none"
-
+    person_detectalkoholvar = person_detectalkohol(message)
+    if first_trigger_var is 1:
+        if eftervelkomstvar is 1 and person_detectblomstervar != "none":
+            return person_detectblomstervar
+        elif eftervelkomstvar is 1:
+            return random.choice(eftervelkomst_send1)
+        elif eftervelkomstvar is 2 and person_detectalkoholvar != "none":
+            return person_detectalkoholvar
+        elif eftervelkomstvar is 2   
+            return random.choice(eftervelkomst_send2)
+        elif eftervelkomstvar is 3:
+            return random.choice(eftervelkomst_send3)
+        elif eftervelkomstvar is 4:
+            return random.choice(eftervelkomst_send4)
+        else: return "none"
 
 @page.handle_message
 def received_message(event):
