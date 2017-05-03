@@ -120,8 +120,8 @@ def received_message(event):
     
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
-    elif reply_text == "test"
-        listing
+    elif reply_text == "test":
+        page.send(sender_id,listing)
     else: page.send(sender_id, reply_text)
 
     listing.append((message, reply_text))
