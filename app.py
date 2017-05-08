@@ -116,8 +116,6 @@ def send(message):
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
     
-    #lastentry_list = listing[-1]
-    
     print listing
     
     if first_trigger_var is 1:
@@ -136,7 +134,7 @@ def send(message):
         else: return "none2"
     else: return "none1"
     
-listing.append([message, send(message)])
+
     
 @page.handle_message
 def received_message(event):
@@ -146,7 +144,7 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-
+    listing.append([message, send(message)])
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
