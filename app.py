@@ -46,6 +46,18 @@ person_foraeldre = ("mor", "far", "foraeldre")
 Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", )
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
+@page.handle_postback
+def received_postback(event):
+    global listing 
+    sender_id = event.sender_id
+    recipient_id = event.recipient_id
+    time_of_postback = event.timestamp
+    payload = event.postback_payload
+    reply_payload = random.choice(Velkomst_send)
+    listing.append([payload, reply_payload])
+    page.send(sender_id, reply_payload)
+
+
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
   QuickReply(title="Alkohol", payload="PICK_Alkohol"),
@@ -90,7 +102,11 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    if listing[-1] != [] and first_trigger_var is 1:
+
+    listing.append([message, send(message)])
+    
+    lastentry_list = listing[-1]
+    if lastentry_list != [] and first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar is 1:
@@ -106,7 +122,7 @@ def send(message):
         else: return "none2"
     else: return "none1"
     
-
+    
 @page.handle_message
 def received_message(event):
     global listing
@@ -116,25 +132,13 @@ def received_message(event):
     time_of_message = event.timestamp
     reply_text = send(message)
 
-    listing.append([message, reply_text])
-
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    
+    print listing
   
-@page.handle_postback
-def received_postback(event):
-    global listing 
-    sender_id = event.sender_id
-    recipient_id = event.recipient_id
-    time_of_postback = event.timestamp
-    payload = event.postback_payload
-    reply_payload = random.choice(Velkomst_send)
-    listing.append([payload, reply_payload])
-    page.send(sender_id, reply_payload)
-    print listing[-1]
+
     
 
 
