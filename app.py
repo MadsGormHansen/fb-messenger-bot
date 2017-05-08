@@ -117,8 +117,6 @@ def received_message(event):
     recipient_id = event.recipient_id
     message = event.message_text
     time_of_message = event.timestamp
-    
-    listing.append([message, send(message)])
 
     def send(message):
         global listing
@@ -144,6 +142,7 @@ def received_message(event):
         else: return "none1"
 
     reply_text = send(message)
+    listing.append([message, reply_text])
     
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
