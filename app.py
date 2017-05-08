@@ -122,7 +122,7 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    listing.append((message, reply_text))
+    listing.append([message, reply_text])
   
 @page.handle_postback
 def received_postback(event):
@@ -134,7 +134,7 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     page.send(sender_id, reply_payload)
     
-    listing.append((payload, reply_payload))
+    listing.append([payload, reply_payload])
 
 @page.after_send
 def after_send(payload, response):
@@ -142,8 +142,6 @@ def after_send(payload, response):
     global listing
     print("complete")
     print listing
-    print listing[0]
-    print listing[-1]
 
   
 
