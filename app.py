@@ -127,6 +127,7 @@ def received_message(event):
   
 @page.handle_postback
 def received_postback(event):
+    global listing 
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
