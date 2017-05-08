@@ -29,7 +29,7 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
   
-Velkomst_send = ["Velkommen til flora, jeg er en chatbot som meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?","Velkommen"]
+Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
@@ -90,8 +90,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    print listing
-    if first_trigger_var is 1:
+    if listing[-1] == [u'*', 'Velkommen']   first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar is 1:
