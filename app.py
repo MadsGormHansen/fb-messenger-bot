@@ -118,7 +118,10 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-    
+    print listing
+    print listing[-1]
+    print listing[0]
+
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
@@ -140,9 +143,7 @@ def received_postback(event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
-    global listing
     print("complete")
-    print listing
   
 
 
