@@ -91,6 +91,7 @@ def send(message):
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
     Lastentry_list = listing[-1]
+    print Lastentry_list
     if Lastentry_list[-1] == Velkomst_send and  first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
