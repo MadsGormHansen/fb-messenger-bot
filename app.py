@@ -43,7 +43,7 @@ person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarb
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
-Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup")
+Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", )
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
 quick_replies = [
@@ -85,8 +85,6 @@ def first_trigger(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive1:
             return 1
-
-
 
 def send(message):
     global listing
@@ -144,7 +142,7 @@ def after_send(payload, response):
     """:type payload: fbmq.Payload"""
     global listing
     print("complete")
-    print listing
+    print listing[-1][1]
   
 
 
