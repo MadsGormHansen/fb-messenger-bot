@@ -85,7 +85,7 @@ def first_trigger(message):
             return 1
 
 def send(message):
-    #global listing
+    global listing
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
