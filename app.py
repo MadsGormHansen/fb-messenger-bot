@@ -134,7 +134,7 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     listing.append([payload, reply_payload])
     page.send(sender_id, reply_payload)
-    
+    print listing[-1]
     
 
 
