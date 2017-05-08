@@ -87,7 +87,7 @@ def first_trigger(message):
             return 1
 
 def send(message):
-    global listing
+    #global listing
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
@@ -119,7 +119,6 @@ def received_message(event):
     time_of_message = event.timestamp
     reply_text = send(message)
     print listing
-    print listing[0]
 
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
@@ -143,6 +142,8 @@ def received_postback(event):
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
     print("complete")
+    print listing
+    
   
 
 
