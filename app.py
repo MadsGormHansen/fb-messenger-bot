@@ -22,15 +22,31 @@ def verify():
     return "Hello world", 200
 
 
-
-
 @app.route('/', methods=['POST'])
 def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
-  
+
+
+global listing
+listing = []
+
+
 Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
+
+@page.handle_postback
+def received_postback(event):
+    global listing 
+    sender_id = event.sender_id
+    recipient_id = event.recipient_id
+    time_of_postback = event.timestamp
+    payload = event.postback_payload
+    reply_payload = random.choice(Velkomst_send)
+    listing.append([payload, reply_payload])
+    
+    page.send(sender_id, reply_payload)
+
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
@@ -64,9 +80,6 @@ quick_replies = [
   QuickReply(title="Chokolade", payload="PICK_chokolade"),
   QuickReply(title="Gave", payload="PICK_Gave")
 ]
-
-global listing
-listing = []
 
 def efter_velkomst(message):
     for word in message.split():
@@ -102,11 +115,12 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-
-    listing.append([message, send(message)])
     
-    lastentry_list = listing[-1]
-    if lastentry_list != [] and first_trigger_var is 1:
+    #lastentry_list = listing[-1]
+    
+    print listing
+    
+    if first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar is 1:
@@ -122,6 +136,7 @@ def send(message):
         else: return "none2"
     else: return "none1"
     
+listing.append([message, send(message)])
     
 @page.handle_message
 def received_message(event):
@@ -136,8 +151,6 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    print listing
-  
 
     
 
