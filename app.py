@@ -29,7 +29,7 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
   
-Velkomst_send = ["Velkommen til flora, jeg er en chatbot som meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?"]
+Velkomst_send = ["Velkommen til flora, jeg er en chatbot som meget gerne vil hjaelpe dig med at finde et par flotte blomster, laekker chokolade eller en god gin, hvad kan jeg goere for dig?","Velkommen"]
 Kom_i_gang =["Kom igang"]
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
@@ -115,7 +115,6 @@ def received_message(event):
     global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    print listing
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
@@ -128,7 +127,6 @@ def received_message(event):
   
 @page.handle_postback
 def received_postback(event):
-    global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
@@ -144,7 +142,6 @@ def after_send(payload, response):
     global listing
     print("complete")
     print listing
-    print listing[-1]
   
 
 
