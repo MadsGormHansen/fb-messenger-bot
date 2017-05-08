@@ -90,7 +90,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    print listing[-1]
+    print listing
     if first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
@@ -135,8 +135,8 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     listing.append([payload, reply_payload])
     page.send(sender_id, reply_payload)
-    print listing[-1]
-  
+    
+    
 
 
 
