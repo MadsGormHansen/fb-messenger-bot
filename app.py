@@ -135,16 +135,7 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     listing.append([payload, reply_payload])
     page.send(sender_id, reply_payload)
-    
-    
-
-@page.after_send
-def after_send(payload, response):
-    """:type payload: fbmq.Payload"""
-    global listing
-    print("complete")
-    print payload, listing
-
+    print listing[-1]
   
 
 
