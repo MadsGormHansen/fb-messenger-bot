@@ -43,7 +43,7 @@ person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarb
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
-Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", )
+Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", )
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
 quick_replies = [
@@ -59,8 +59,6 @@ listing = []
 def efter_velkomst(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive2:
-            return 1
-        elif word.lower() in eftervelkomst_receive3:
             return 2
         elif word.lower() in eftervelkomst_receive4:
             return 3
@@ -144,7 +142,9 @@ def after_send(payload, response):
     global listing
     print("complete")
     print listing
-    
+    print listing[0]
+    print listing[-1]
+
   
 
 
