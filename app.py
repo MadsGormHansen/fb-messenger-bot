@@ -115,7 +115,6 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-    print "after Handle message listing" listing
     listing.append([message, reply_text])
     
     if reply_text == "none":
@@ -134,7 +133,7 @@ def received_postback(event):
     listing.append([payload, reply_payload])
     
     page.send(sender_id, reply_payload)
-    print "after postback listing" listing
+
 
 @page.after_send
 def after_send(payload, response):
