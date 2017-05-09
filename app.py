@@ -1,3 +1,4 @@
+# -*- coding: cp1252 -*-
 import os
 import sys
 import json
@@ -41,11 +42,12 @@ eftervelkomst_receive5 = ("gave", "pakke")
 eftervelkomst_send1 = ("hvem oensker du at sende en buket?", "hvem kan jeg hjaelpe dig med at koebe blomster til?")
 eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
+eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
 person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
-Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", )
+Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag")
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
 quick_replies = [
@@ -59,6 +61,8 @@ quick_replies = [
 def efter_velkomst(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive2:
+            return 1
+        elif word.lower() in eftervelkomst_receive3:
             return 2
         elif word.lower() in eftervelkomst_receive4:
             return 3
@@ -91,8 +95,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    a = []
-
+    a= []
 
     if first_trigger_var == 1 and listing == a:
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
@@ -107,7 +110,7 @@ def send(message):
             return random.choice(eftervelkomst_send3)
         elif eftervelkomstvar == 4:
             return random.choice(eftervelkomst_send4)
-        else: return "none2"
+        else: return "none"
     elif listing != a:
         return "none1"
     else: return "none3"
