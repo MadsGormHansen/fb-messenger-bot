@@ -127,10 +127,8 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-    
-    
 
-    if listing ==[]
+    if listing ==[]:
         pass
     else:
         if reply_text == "none":
