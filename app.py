@@ -92,25 +92,24 @@ def send(message):
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
 
-    if listing == []:
-        if first_trigger_var is 1:
-            if eftervelkomstvar is 1 and person_detectblomstervar != "none":
-                return person_detectblomstervar
-            elif eftervelkomstvar is 1:
-                return random.choice(eftervelkomst_send1)
-            elif eftervelkomstvar is 2 and person_detectalkoholvar != "none":
-                return person_detectalkoholvar
-            elif eftervelkomstvar is 2:
-                return random.choice(eftervelkomst_send2)
-            elif eftervelkomstvar is 3:
-                return random.choice(eftervelkomst_send3)
-            elif eftervelkomstvar is 4:
-                return random.choice(eftervelkomst_send4)
-            else: return "none2"
-        else: return "none1"
-    elif listing[-1] == ["*", eftervelkomst_send2]:
-        return "none3"
-    else: return "none4"
+
+    if first_trigger_var == 1 and listing == []:
+        if eftervelkomstvar == 1 and person_detectblomstervar != "none":
+            return person_detectblomstervar
+        elif eftervelkomstvar == 1:
+            return random.choice(eftervelkomst_send1)
+        elif eftervelkomstvar == 2 and person_detectalkoholvar != "none":
+            return person_detectalkoholvar
+        elif eftervelkomstvar == 2:
+            return random.choice(eftervelkomst_send2)
+        elif eftervelkomstvar == 3:
+            return random.choice(eftervelkomst_send3)
+        elif eftervelkomstvar == 4:
+            return random.choice(eftervelkomst_send4)
+        else: return "none2"
+    elif listing != []
+        return "none1"
+    else: return "none3"
 
     
 @page.handle_message
