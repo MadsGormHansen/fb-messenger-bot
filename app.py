@@ -28,13 +28,10 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
 
-global listing
-listing = []
-
 Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
@@ -89,15 +86,12 @@ def first_trigger(message):
             return 1
         
 def send(message):
-    global listing
-    print "Listing in send", listing 
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    a= []
 
-    if first_trigger_var == 1 and listing == a:
+    if first_trigger_var == 1 :
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar == 1:
@@ -111,15 +105,11 @@ def send(message):
         elif eftervelkomstvar == 4:
             return random.choice(eftervelkomst_send4)
         else: return "none"
-    elif listing != a:
-        return "none1"
     else: return "none3"
 
     
 @page.handle_message
 def received_message(event):
-    global listing
-    print "Listing in Handlemessage", listing   
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
@@ -130,13 +120,9 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    listing.append([message, reply_text])
-    print "Listing after Handlemessage", listing   
 
 @page.handle_postback
-def received_postback(event):
-    global listing
-    print "Listing in postback", listing   
+def received_postback(event): 
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
@@ -144,8 +130,6 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     
     page.send(sender_id, reply_payload)
-
-    print "Listing after postback", listing
     
 @page.after_send
 def after_send(payload, response):
