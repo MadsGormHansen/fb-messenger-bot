@@ -131,7 +131,7 @@ def received_message(event):
     
     listing.append([message, reply_text])
     
-    if listing ==[]:
+    if listing is []:
         page.send(sender_id, "Empty")
     else:
         if reply_text == "none":
