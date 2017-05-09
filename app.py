@@ -90,7 +90,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-
+    
     if first_trigger_var == 1 :
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
@@ -112,14 +112,15 @@ def send(message):
 def received_message(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    message = unicode(event.message_text, 'utf8')
+    message = event.message_text.decode('iso-8859-1')
     time_of_message = event.timestamp
     reply_text = send(message)
-    
+
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
+    print
 
 @page.handle_postback
 def received_postback(event): 
