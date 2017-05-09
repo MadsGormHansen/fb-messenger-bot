@@ -112,6 +112,7 @@ def send(message):
 @page.handle_message
 def received_message(event):
     global listing
+    print "Received message", event.message_text
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
