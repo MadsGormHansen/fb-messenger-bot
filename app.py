@@ -94,7 +94,7 @@ def send(message):
     a = []
 
 
-    if first_trigger_var == 1 and listing == a :
+    if first_trigger_var == 1 and listing == a:
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
         elif eftervelkomstvar == 1:
@@ -108,7 +108,7 @@ def send(message):
         elif eftervelkomstvar == 4:
             return random.choice(eftervelkomst_send4)
         else: return "none2"
-    elif listing != a
+    elif listing != a:
         return "none1"
     else: return "none3"
 
