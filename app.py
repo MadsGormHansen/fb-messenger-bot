@@ -32,7 +32,6 @@ listing = []
 
 Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
-
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
@@ -47,7 +46,6 @@ person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", )
 Andledning_send = ("hvilken anledning gives der blomster til?")
-
 
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
@@ -86,7 +84,6 @@ def first_trigger(message):
         
 def send(message):
     global listing
-    print "Listing in send", listing
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
@@ -112,12 +109,12 @@ def send(message):
 @page.handle_message
 def received_message(event):
     global listing
-    print "Received message", event.message_text
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
+    
     listing.append([message, reply_text])
 
     print "Listing after recieved message", listing
@@ -139,7 +136,9 @@ def received_postback(event):
     
     listing.append([payload, reply_payload])
     print "Listing after postback", listing
+    
     page.send(sender_id, reply_payload)
+
 
 @page.after_send
 def after_send(payload, response):
