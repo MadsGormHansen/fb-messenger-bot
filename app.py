@@ -48,17 +48,6 @@ person_foraeldre = ("mor", "far", "foraeldre")
 Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", )
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
-@page.handle_postback
-def received_postback(event):
-    global listing 
-    sender_id = event.sender_id
-    recipient_id = event.recipient_id
-    time_of_postback = event.timestamp
-    payload = event.postback_payload
-    reply_payload = random.choice(Velkomst_send)
-    listing.append([payload, reply_payload])
-    page.send(sender_id, reply_payload)
-
 
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
@@ -101,7 +90,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    
+
     if first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
@@ -127,16 +116,13 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-    print listing
-    
     listing.append([message, reply_text])
-    
-    if listing is []:
-        page.send(sender_id, "Empty")
-    else:
-        if reply_text == "none":
-            page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
-        else: page.send(sender_id, reply_text)
+
+    print "Listing after recieved message", listing
+ 
+    if reply_text == "none":
+        page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    else: page.send(sender_id, reply_text)
 
     
 
@@ -148,15 +134,10 @@ def received_postback(event):
     time_of_postback = event.timestamp
     payload = event.postback_payload
     reply_payload = random.choice(Velkomst_send)
-    listing.append([payload, reply_payload])
     
+    listing.append([payload, reply_payload])
+    print "Listing after postback", listing
     page.send(sender_id, reply_payload)
-
-
-@page.after_send
-def after_send(payload, response):
-  """:type payload: fbmq.Payload"""
-  print("complete")
 
 
 
