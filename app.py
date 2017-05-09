@@ -102,7 +102,7 @@ def send(message):
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
 
-    if listing is []
+    if listing is []:
         pass
     elif listing[-1] != [] and first_trigger_var is 1 and lastentry_list != []:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
