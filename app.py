@@ -86,6 +86,7 @@ def first_trigger(message):
         
 def send(message):
     global listing
+    print "Listing in send", listing 
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
@@ -111,6 +112,7 @@ def send(message):
 @page.handle_message
 def received_message(event):
     global listing
+    print "Listing in Handlemessage", listing   
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
@@ -122,12 +124,13 @@ def received_message(event):
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
-    
-    page.send(sender_id, reply_text)
+
+    print "Listing after Handlemessage", listing   
 
 @page.handle_postback
 def received_postback(event):
-    global listing 
+    global listing
+    print "Listing in postback", listing   
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
