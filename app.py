@@ -86,23 +86,24 @@ def first_trigger(message):
         
 def send(message):
     global listing
+    print "Listing in send", listing
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
 
-    if first_trigger_var is 1:
-        if eftervelkomstvar is 1 and person_detectblomstervar != "none":
+    if first_trigger_var == 1:
+        if eftervelkomstvar == 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
-        elif eftervelkomstvar is 1:
+        elif eftervelkomstvar == 1:
             return random.choice(eftervelkomst_send1)
-        elif eftervelkomstvar is 2 and person_detectalkoholvar != "none":
+        elif eftervelkomstvar == 2 and person_detectalkoholvar != "none":
             return person_detectalkoholvar
-        elif eftervelkomstvar is 2:
+        elif eftervelkomstvar == 2:
             return random.choice(eftervelkomst_send2)
-        elif eftervelkomstvar is 3:
+        elif eftervelkomstvar == 3:
             return random.choice(eftervelkomst_send3)
-        elif eftervelkomstvar is 4:
+        elif eftervelkomstvar == 4:
             return random.choice(eftervelkomst_send4)
         else: return "none2"
     else: return "none1"
