@@ -138,8 +138,6 @@ def received_postback(event):
     payload = event.postback_payload
     reply_payload = random.choice(Velkomst_send)
     
-    listing.append([payload, reply_payload])
-    
     page.send(sender_id, reply_payload)
 
     print "Listing after postback", listing
