@@ -31,7 +31,7 @@ def webhook():
 Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge") 
+eftervelkomst_receive1 = (u"købe", "se", u"undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
@@ -82,7 +82,7 @@ def person_detectalkohol(message):
 
 def first_trigger(message):
     for word in message.split():
-        if word.lower() in eftervelkomst_receive1.encode('utf-8'):
+        if word.lower() in eftervelkomst_receive1:
             return 1
         
 def send(message):
