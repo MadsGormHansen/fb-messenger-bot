@@ -27,7 +27,6 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
 
-'''
 global listing
 listing = []
 
@@ -108,36 +107,36 @@ def send(message):
         else: return "none2"
     else: return "none1"
 
-'''
+
 @page.handle_message
 def received_message(event):
-    #global listing
+    global listing
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text
     time_of_message = event.timestamp
-    #reply_text = send(message)
+    reply_text = send(message)
 
-    #listing.append([message, reply_text])
-    '''
+    listing.append([message, reply_text])
+    
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
-    '''
-    page.send(sender_id, "det er modtaget")
+    
+    page.send(sender_id, reply_text)
 
 @page.handle_postback
 def received_postback(event):
-    #global listing 
+    global listing 
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
     payload = event.postback_payload
-    #reply_payload = random.choice(Velkomst_send)
+    reply_payload = random.choice(Velkomst_send)
     
-    #listing.append([payload, reply_payload])
+    listing.append([payload, reply_payload])
     
-    page.send(sender_id, "reply postback")#reply_payload)
+    page.send(sender_id, reply_payload)
 
 
 @page.after_send
