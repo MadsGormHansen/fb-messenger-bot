@@ -91,6 +91,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
+    last_listing = listing[-1]
     
     if first_trigger_var is 1:
         if eftervelkomstvar is 1 and person_detectblomstervar != "none":
