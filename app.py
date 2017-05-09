@@ -32,6 +32,7 @@ listing = []
 
 Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
+
 eftervelkomst_receive1 = ("koebe", "se", "undersoege", "sende", "taenke", "taenkte", "hjaelpe", "hjaelp", "har i", "skal bruge") 
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
@@ -88,19 +89,19 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-
-    if first_trigger_var == 1:
-        if eftervelkomstvar == 1 and person_detectblomstervar != "none":
+    
+    if first_trigger_var is 1:
+        if eftervelkomstvar is 1 and person_detectblomstervar != "none":
             return person_detectblomstervar
-        elif eftervelkomstvar == 1:
+        elif eftervelkomstvar is 1:
             return random.choice(eftervelkomst_send1)
-        elif eftervelkomstvar == 2 and person_detectalkoholvar != "none":
+        elif eftervelkomstvar is 2 and person_detectalkoholvar != "none":
             return person_detectalkoholvar
-        elif eftervelkomstvar == 2:
+        elif eftervelkomstvar is 2:
             return random.choice(eftervelkomst_send2)
-        elif eftervelkomstvar == 3:
+        elif eftervelkomstvar is 3:
             return random.choice(eftervelkomst_send3)
-        elif eftervelkomstvar == 4:
+        elif eftervelkomstvar is 4:
             return random.choice(eftervelkomst_send4)
         else: return "none2"
     else: return "none1"
@@ -114,16 +115,13 @@ def received_message(event):
     message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
-    
+    print "after Handle message listing" listing
     listing.append([message, reply_text])
-
-    print "Listing after recieved message", listing
- 
+    
     if reply_text == "none":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    
 
 @page.handle_postback
 def received_postback(event):
@@ -133,12 +131,10 @@ def received_postback(event):
     time_of_postback = event.timestamp
     payload = event.postback_payload
     reply_payload = random.choice(Velkomst_send)
-    
     listing.append([payload, reply_payload])
-    print "Listing after postback", listing
     
     page.send(sender_id, reply_payload)
-
+    print "after postback listing" listing
 
 @page.after_send
 def after_send(payload, response):
