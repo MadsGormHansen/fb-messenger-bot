@@ -92,7 +92,7 @@ def send(message):
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
 
-    if listing == [] 
+    if listing == []:
         if first_trigger_var is 1:
             if eftervelkomstvar is 1 and person_detectblomstervar != "none":
                 return person_detectblomstervar
