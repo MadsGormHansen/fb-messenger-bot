@@ -141,5 +141,8 @@ def received_postback(event):
     print "Listing after postback", listing
     page.send(sender_id, reply_payload)
 
-
+@page.after_send
+def after_send(payload, response):
+    """:type payload: fbmq.Payload"""
+    print("complete")
 
