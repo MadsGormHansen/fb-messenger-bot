@@ -133,7 +133,7 @@ def received_postback(event):
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
     payload = event.postback_payload
-    reply_payload = random.choice(Velkomst_send)
+    #reply_payload = random.choice(Velkomst_send)
     
     #listing.append([payload, reply_payload])
     
