@@ -112,7 +112,7 @@ def send(message):
 def received_message(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    message = event.message_text.decode('iso-8859-1')
+    message = event.message_text.encode('utf-8')
     time_of_message = event.timestamp
     reply_text = send(message)
 
@@ -120,7 +120,7 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    print
+    print message
 
 @page.handle_postback
 def received_postback(event): 
