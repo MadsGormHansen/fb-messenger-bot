@@ -116,6 +116,8 @@ def send(message):
         elif eftervelkomstvar == 4:
             return "Jeg kender gave" 
         else: return "send quickreply1"
+    elif message == "Blomster"
+        return "Quickreply blomster"    
     else: "none"
     
 @page.handle_message
@@ -130,7 +132,7 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    return reply_text
+    print "text in handle message", reply_text
 
 @page.handle_postback
 def received_postback(event): 
@@ -142,7 +144,19 @@ def received_postback(event):
     
     page.send(sender_id, reply_payload)
 
-    return payload
+    print "payload in postback", payload
+
+
+@page.callback(['PICK_Blomster'])
+def callback_clicked_button(payload, event):
+    sender_id = event.sender_id
+    recipient_id = event.recipient_id
+    reply_blomsterpayload = "Jeg kender blomster fra quickreply"
+    
+    page.send(sender_id, reply_blomsterpayload)
+
+    return "payload in postback", payload
+    
 
 @page.after_send
 def after_send(payload, response):
