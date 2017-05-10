@@ -31,13 +31,13 @@ def webhook():
 Velkomst_send = ["Hej og velkommen til Interflora! Jeg er din automatiske chatbot og vil hjælpe dig med at finde det rigtige. Fortæl først, hvad du kigger efter, fx  blomster, chokolade, vin eller gavepakker.","Hej, hvad kan jeg hjælpe dig med? Jeg er din chatbot, og du skal blot fortælle, hvad du er interesseret i, så vil jeg prøve at hjælpe dig. "]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge", "interesseret", "jeg skal have", "have", "finde" )
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har", "bruge", "interesseret", "have", "finde" )
 eftervelkomst_receive2 = ("blomster", "buketter", "flot", "blomst", "buket") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
 
-eftervelkomst_receive12 = ("det er til min", "de er til min", "jeg skal til", "det skal min")
+eftervelkomst_receive12 = ("til")
 
 eftervelkomst_send1 = ("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
 
@@ -47,7 +47,7 @@ eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at gi
 
 person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate")
 
-Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag", "begravelse", "sygdom", "bare fordi")
+Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag", "begravelse", "sygdom", "bare fordi", "fylder")
 
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
@@ -144,7 +144,7 @@ def send(message):
         elif anledning_detect1var != "none":
             return anledning_detect1var
         else: return "none1"
-    else: return "none"
+    else: return "none2"
     
 @page.handle_message
 def received_message(event):
