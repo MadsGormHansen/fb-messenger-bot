@@ -117,8 +117,6 @@ def send(message):
         elif eftervelkomstvar == 4:
             return "Jeg kender gave" 
         else: return "send quickreply1"
-    elif message == "blomster":
-        return "kun blomster efter quickply"
     else: "none"
     
 @page.handle_message
