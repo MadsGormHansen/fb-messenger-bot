@@ -37,7 +37,7 @@ eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oe
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
 
-eftervelkomst_receive12 = ("til")
+eftervelkomst_receive12 = ("til","holder")
 
 eftervelkomst_send1 = ("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
 
@@ -142,7 +142,7 @@ def send(message):
         if person_detect1var != "none":
             return person_detect1var
         elif anledning_detect1var != "none":
-            return anledning_detect1var
+            return Pris_send
         else: return "none1"
     else: return "none2"
     
