@@ -31,13 +31,15 @@ def webhook():
 Velkomst_send = ["Hej og velkommen til Interflora! Jeg er din automatiske chatbot og vil hjælpe dig med at finde det rigtige. Fortæl først, hvad du kigger efter, fx  blomster, chokolade, vin eller gavepakker.","Hej, hvad kan jeg hjælpe dig med? Jeg er din chatbot, og du skal blot fortælle, hvad du er interesseret i, så vil jeg prøve at hjælpe dig. "]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har", "bruge", "interesseret", "have", "finde" )
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har", "bruge", "have", "finde" )
 eftervelkomst_receive2 = ("blomster", "buketter", "flot", "blomst", "buket") 
-eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
+eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "øl", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
 
 eftervelkomst_receive12 = ("til","holder", "gør", "skal")
+interesseret = ("interesseret")
+blomster = ("blomster","blomst")
 
 eftervelkomst_send1 = ("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
 
@@ -92,7 +94,7 @@ def person_detect2(message):
 def person_detect3(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return "Hvad er din" + " " + str(word)+ " " + "interesseret i? Er det til en buket blomster, vin eller chokolade?"
+            return "Hvad er din" + " " + str(word)+ " " + "interesseret i? Er det en buket blomster, vin eller chokolade?"
     return "none"
 
 def anledning_detect1(message):
@@ -112,10 +114,21 @@ def second_trigger(message):
         if word.lower() in eftervelkomst_receive12:
             return 1
 
-
+def third_trigger(message):
+    for word in message.split():
+        if word.lower() in blomster:
+            return 1
+        
+def fourth_trigger(message):
+     for word in message.split():
+        if word.lower() in interesseret:
+            return 1
+        
 def send(message):
     first_trigger_var= first_trigger(message)
     second_trigger_var = second_trigger(message)
+    third_trigger_var = third_trigger(message)
+    fourth_trigger_var = fourth_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detect1var = person_detect1(message)
     person_detect2var = person_detect2(message)
@@ -139,11 +152,15 @@ def send(message):
             return random.choice(eftervelkomst_send1)
         else: return "send quickreply1"  
     elif second_trigger_var == 1:
-        if person_detect1var != "none":
-            return person_detect1var
-        elif anledning_detect1var != "none":
+        if anledning_detect1var != "none":
             return Pris_send
+        elif person_detect1var != "none":
+            return person_detect1var
         else: return "none1"
+    elif third_trigger_var == 1:
+        if fourth_trigger_var == 1: 
+            return Pris_send
+        else: "none3"
     else: return "none2"
     
 @page.handle_message
