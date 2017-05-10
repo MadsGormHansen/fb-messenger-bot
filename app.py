@@ -108,7 +108,7 @@ def send(message):
     person_detectanledning = person_detectanledning(message)
     
     if first_trigger_var == 1:
-        if eftervelkomstvar == 1 and person_detectblomstervar != "none" and person_detectanledning != "none:
+        if eftervelkomstvar == 1 and person_detectblomstervar != "none" and person_detectanledning != "none":
             return "Jeg kender anledning, person og blomster 1"
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
             return "Jeg kender person og blomster 1"
