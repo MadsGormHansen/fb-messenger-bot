@@ -28,24 +28,32 @@ def webhook():
   page.handle_webhook(request.get_data(as_text=True))
   return "ok"
 
-Velkomst_send = ["Velkommen","Velkommen"]
+Velkomst_send = ["Hej og velkommen til Interflora! Jeg er din automatiske chatbod og vil hjælpe dig med at finde det rigtige. Fortæl først, hvad du kigger efter, fx  blomster, chokolade, vin eller gavepakker.","Hej, hvad kan jeg hjælpe dig med? Jeg er din chatbod, og du skal blot fortælle, hvad du er interesseret i, så vil jeg prøve at hjælpe dig. "]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge")
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge", "interesseret", "jeg skal have", "have", )
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
-eftervelkomst_send1 = ("hvem ønsker du at sende en buket?", u"hvem kan jeg hjælpe dig med at købe blomster til?")
-eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
+
+eftervelkomst_send1 = ("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
+
+eftervelkomst_send2 = ("hvem har du tænkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjælpe dig med at give en gave?")
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
+
 person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
+
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
-Anledning = ("jubileaum", "foedselsdag", "bryllup", "kobberbryllup", "guldbryllup", "soelvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag")
+
+Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag", "begravelse", "sygdom")
+
 Andledning_send = ("hvilken anledning gives der blomster til?")
+
+Pris_send = ("Fint, har du tænkt på, hvor meget buketten cirka skal koste?")  
 
 quick_replies = [
   QuickReply(title="Blomster", payload="PICK_Blomster"),
@@ -80,32 +88,42 @@ def person_detectalkohol(message):
             return "Vil din" +" " + str(word)+ " " + "vaere mest interesseret i oel, vin eller alkohol?"
     return "none"
 
+def person_detectanledning(message):
+    for word in message.split():
+        if word.lower() in Anledning:
+            return "Kender din anledning"
+    return "none"
+
 def first_trigger(message):
     for word in message.split():
         if word.lower() in eftervelkomst_receive1:
             return 1
-        
+
+
 def send(message):
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
+    person_detectanledning = person_detectanledning(message)
     
-    if first_trigger_var == 1 :
+    if first_trigger_var == 1:
+        if eftervelkomstvar == 1 and person_detectblomstervar != "none" and person_detectanledning != "none:
+            return "Jeg kender anledning, person og blomster 1"
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
-            return person_detectblomstervar
+            return "Jeg kender person og blomster 1"
         elif eftervelkomstvar == 1:
-            return random.choice(eftervelkomst_send1)
+            return "Jeg kender blomster"
         elif eftervelkomstvar == 2 and person_detectalkoholvar != "none":
-            return person_detectalkoholvar
+            return "jeg kender Alkohol og person"
         elif eftervelkomstvar == 2:
-            return random.choice(eftervelkomst_send2)
+            return "jeg kender alkohol"
         elif eftervelkomstvar == 3:
-            return random.choice(eftervelkomst_send3)
+            return "Jeg kender chokolade"
         elif eftervelkomstvar == 4:
-            return random.choice(eftervelkomst_send4)
-        else: return "none"
-    else: return "none3"
+            return "Jeg kender gave" 
+        else: return "send quickreply1"
+    elif 
 
     
 @page.handle_message
@@ -116,7 +134,7 @@ def received_message(event):
     time_of_message = event.timestamp
     reply_text = send(message)
     reply_text = reply_text if isinstance(reply_text, str) else reply_text.encode('utf-8') if isinstance(reply_text,unicode) else None
-    if reply_text == "none":
+    if reply_text == "send quickreply1":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
