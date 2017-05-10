@@ -117,8 +117,8 @@ def received_message(event):
     reply_text = send(message)
 
     if reply_text == "none":
-        page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
-    else: page.send(sender_id, reply_text)
+        page.send(sender_id, text="Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    else: page.send(sender_id, text=reply_text)
 
 @page.handle_postback
 def received_postback(event): 
