@@ -112,7 +112,7 @@ def send(message):
 def received_message(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    message = event.message_text
+    message = event.message_text.encode('utf8')
     time_of_message = event.timestamp
     reply_text = send(message)
 
