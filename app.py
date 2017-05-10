@@ -105,7 +105,7 @@ def send(message):
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
     person_detectalkoholvar = person_detectalkohol(message)
-    person_detectanledning = person_detectanledning(message)
+    person_detectanledningvar = person_detectanledning(message)
     
     if first_trigger_var == 1:
         if eftervelkomstvar == 1 and person_detectblomstervar != "none" and person_detectanledning != "none":
