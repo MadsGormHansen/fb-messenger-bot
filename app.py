@@ -126,7 +126,7 @@ def send(message):
         elif person_detect2var != "none":
             return person_detect2var
         elif eftervelkomstvar == 1:
-            return eftervelkomst_send1
+            return random.choice(eftervelkomst_send1)
         else: return "send quickreply1"  
     else: "none"
     
