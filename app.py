@@ -1,4 +1,4 @@
-# -*- coding: cp1252 -*-
+# -*- coding: utf-8 -*-
 import os
 import sys
 import json
@@ -31,7 +31,7 @@ def webhook():
 Velkomst_send = ["Velkommen","Velkommen"]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = (u"købe", "se", u"undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge")
+eftervelkomst_receive1 = ("kÃ¸be", "se", "undersÃ¸ge", "sende", "tÃ¦nke", "tÃ¦nkte", "hjÃ¦lpe", "hjÃ¦lp", "har i", "skal bruge")
 eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "laekkerier", "soedt")
@@ -39,7 +39,7 @@ eftervelkomst_receive5 = ("gave", "pakke")
 eftervelkomst_send1 = ("hvem oensker du at sende en buket?", u"hvem kan jeg hjaelpe dig med at koebe blomster til?")
 eftervelkomst_send2 = ("hvem har du taenkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjaelpe dig med at give en gave?")
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
-eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
+eftervelkomst_send3 = ("hvem tÃ¦nker du at give en gave", "hvem Ã¸nsker du at give en gave")
 person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
@@ -112,7 +112,7 @@ def send(message):
 def received_message(event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    message = event.message_text.encode('utf-8')
+    message = event.message_text
     time_of_message = event.timestamp
     reply_text = send(message)
 
