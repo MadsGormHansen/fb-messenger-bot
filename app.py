@@ -43,15 +43,17 @@ eftervelkomst_send2 = ("hvem har du tænkt dig at give en gave? Jeg kan andbefal
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
 
-person_detect = ("mor", "mors", "far","fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate")
+person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate")
 
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
 person_foraeldre = ("mor", "far", "foraeldre")
 
-Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag", "begravelse", "sygdom")
+Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag", "begravelse", "sygdom", "bare fordi")
 
 Andledning_send = ("hvilken anledning gives der blomster til?")
+
+Pris_detect = ("kr", "koste")
 
 Pris_send = ("Fint, har du tænkt på, hvor meget buketten cirka skal koste?")  
 
@@ -76,17 +78,26 @@ def efter_velkomst(message):
     return 0
 
 
-def person_detectblomster(message):
+def person_detect1(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return "Har din" +" " + str(word)+ " " + "nogle ynglings blomster?"
+            return "I hvilken anledning vil du gerne gi’ din" +" " + str(word)+ " " + "blomster? Fx fødselsdag, Mors Dag eller andet?"
     return "none"
 
-def person_detectanledning(message):
+
+def person_detect2(message):
+    for word in message.split():
+        if word.lower() in person_detect:
+            return "Skal din" +" " + str(word)+ " " + " have en gave til en bestemt anledning? Er det til en fødselsdag eller bare fordi?"
+    return "none"
+
+
+def anledning_detect1(message):
     for word in message.split():
         if word.lower() in Anledning:
             return "Kender din anledning"
     return "none"
+
 
 def first_trigger(message):
     for word in message.split():
@@ -94,27 +105,28 @@ def first_trigger(message):
             return 1
 
 
+
+
 def send(message):
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
-    person_detectblomstervar= person_detectblomster(message)
-    person_detectanledningvar = person_detectanledning(message)
+    person_detect1var = person_detect1(message)
+    person_detect2var = person_detect2(message)
+    anledning_detect1var = anledning_detect1(message)
     
     if first_trigger_var == 1:
-        if eftervelkomstvar == 1 and person_detectblomstervar != "none" and person_detectanledningvar != "none":
-            return "Jeg kender anledning, person og blomster 1"
-        if eftervelkomstvar == 1 and person_detectanledningvar != "none":
-            return "Jeg kender person og anledning"
-        if eftervelkomstvar == 1 and person_detectblomstervar != "none":
-            return "Jeg kender person og blomster 1"
+        if eftervelkomstvar == 1 and person_detect1var != "none" and anledning_detect1var != "none":
+            return Pris_send
+        elif eftervelkomstvar == 1 and anledning_detect1var != "none":
+            return "Hvem er blomsterne til  "
+        elif eftervelkomstvar == 1 and person_detect1var != "none":
+            return person_detect1var
+        elif anledning_detect1var != "none":
+            return "hvem skal modtage gaven til jubilæet"
+        elif person_detect2var != "none":
+            return person_detect2var
         elif eftervelkomstvar == 1:
-            return "Jeg kender blomster"
-        elif eftervelkomstvar == 2:
-            return "jeg kender alkohol"
-        elif eftervelkomstvar == 3:
-            return "Jeg kender chokolade"
-        elif eftervelkomstvar == 4:
-            return "Jeg kender gave" 
+            return eftervelkomst_send1
         else: return "send quickreply1"  
     else: "none"
     
@@ -130,7 +142,6 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
-    print "text in handle message", reply_text
 
 @page.handle_postback
 def received_postback(event): 
@@ -142,14 +153,11 @@ def received_postback(event):
     
     page.send(sender_id, reply_payload)
 
-    print "payload in postback", payload
-
-
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
-    reply_blomsterpayload = "Jeg kender blomster fra quickreply"
+    reply_blomsterpayload = random.choice("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
     
     page.send(sender_id, reply_blomsterpayload)
 
