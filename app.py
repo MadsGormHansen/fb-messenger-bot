@@ -31,7 +31,7 @@ def webhook():
 Velkomst_send = ["Hej og velkommen til Interflora! Jeg er din automatiske chatbod og vil hjælpe dig med at finde det rigtige. Fortæl først, hvad du kigger efter, fx  blomster, chokolade, vin eller gavepakker.","Hej, hvad kan jeg hjælpe dig med? Jeg er din chatbod, og du skal blot fortælle, hvad du er interesseret i, så vil jeg prøve at hjælpe dig. "]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge", "interesseret", "jeg skal have", "have","finde" )
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge", "interesseret", "jeg skal have", "have", "finde" )
 eftervelkomst_receive2 = ("blomster", "buketter", "flot", "blomst", "buket") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
@@ -98,7 +98,6 @@ def send(message):
     first_trigger_var= first_trigger(message)
     eftervelkomstvar= efter_velkomst(message)
     person_detectblomstervar= person_detectblomster(message)
-    person_detectalkoholvar = person_detectalkohol(message)
     person_detectanledningvar = person_detectanledning(message)
     
     if first_trigger_var == 1:
