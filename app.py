@@ -115,10 +115,10 @@ def received_message(event):
     message = event.message_text.encode('utf8')
     time_of_message = event.timestamp
     reply_text = send(message)
-
+    reply_text = reply_text if isinstance(reply_text, str) else reply_text.encode('utf-8') if isinstance(reply_text,unicode) else None
     if reply_text == "none":
-        page.send(sender_id, text="Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
-    else: page.send(sender_id, text=reply_text)
+        page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    else: page.send(sender_id, reply_text)
 
 @page.handle_postback
 def received_postback(event): 
