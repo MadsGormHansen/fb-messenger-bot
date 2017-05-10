@@ -31,8 +31,8 @@ def webhook():
 Velkomst_send = ["Hej og velkommen til Interflora! Jeg er din automatiske chatbod og vil hjælpe dig med at finde det rigtige. Fortæl først, hvad du kigger efter, fx  blomster, chokolade, vin eller gavepakker.","Hej, hvad kan jeg hjælpe dig med? Jeg er din chatbod, og du skal blot fortælle, hvad du er interesseret i, så vil jeg prøve at hjælpe dig. "]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge", "interesseret", "jeg skal have", "have", )
-eftervelkomst_receive2 = ("blomster", "buketter", "flot") 
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har i", "skal bruge", "interesseret", "jeg skal have", "have","finde" )
+eftervelkomst_receive2 = ("blomster", "buketter", "flot", "blomst", "buket") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oel", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
@@ -43,7 +43,7 @@ eftervelkomst_send2 = ("hvem har du tænkt dig at give en gave? Jeg kan andbefal
 eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
 
-person_detect = ("mor", "far", "kaereste", "kone", "sambo", "foraeldre", "medarbejder", "kollega", "teammate")
+person_detect = ("mor", "mors", "far","fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate")
 
 person_kaerlighed = ("kone", "kaereste")
 person_arbejde = ("medarbejder", "kollega", "teammate")
@@ -82,12 +82,6 @@ def person_detectblomster(message):
             return "Har din" +" " + str(word)+ " " + "nogle ynglings blomster?"
     return "none"
 
-def person_detectalkohol(message):
-    for word in message.split():
-        if word.lower() in person_detect:
-            return "Vil din" +" " + str(word)+ " " + "vaere mest interesseret i oel, vin eller alkohol?"
-    return "none"
-
 def person_detectanledning(message):
     for word in message.split():
         if word.lower() in Anledning:
@@ -110,12 +104,12 @@ def send(message):
     if first_trigger_var == 1:
         if eftervelkomstvar == 1 and person_detectblomstervar != "none" and person_detectanledningvar != "none":
             return "Jeg kender anledning, person og blomster 1"
+        if eftervelkomstvar == 1 and person_detectanledningvar != "none":
+            return "Jeg kender person og anledning"
         if eftervelkomstvar == 1 and person_detectblomstervar != "none":
             return "Jeg kender person og blomster 1"
         elif eftervelkomstvar == 1:
             return "Jeg kender blomster"
-        elif eftervelkomstvar == 2 and person_detectalkoholvar != "none":
-            return "jeg kender Alkohol og person"
         elif eftervelkomstvar == 2:
             return "jeg kender alkohol"
         elif eftervelkomstvar == 3:
@@ -123,7 +117,7 @@ def send(message):
         elif eftervelkomstvar == 4:
             return "Jeg kender gave" 
         else: return "send quickreply1"
-    else: return "none"
+    elif: 
 
     
 @page.handle_message
@@ -138,6 +132,8 @@ def received_message(event):
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     else: page.send(sender_id, reply_text)
 
+    return reply_text
+
 @page.handle_postback
 def received_postback(event): 
     sender_id = event.sender_id
@@ -147,7 +143,9 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     
     page.send(sender_id, reply_payload)
-    
+
+    return payload
+
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
