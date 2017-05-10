@@ -123,7 +123,7 @@ def send(message):
         elif eftervelkomstvar == 4:
             return "Jeg kender gave" 
         else: return "send quickreply1"
-    elif 
+    else: return "none"
 
     
 @page.handle_message
