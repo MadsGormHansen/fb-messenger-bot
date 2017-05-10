@@ -37,7 +37,7 @@ eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "oe
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
 
-eftervelkomst_receive12 = ("det er til min", "de er til min", "jeg skal til")
+eftervelkomst_receive12 = ("det er til min", "de er til min", "jeg skal til", "det skal min")
 
 eftervelkomst_send1 = ("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
 
@@ -141,8 +141,9 @@ def send(message):
     elif second_trigger_var == 1:
         if person_detect1var != "none":
             return person_detect1var
-        if anledning_detect1var != "none":
+        elif anledning_detect1var != "none":
             return anledning_detect1var
+        else: return "none1"
     else: return "none"
     
 @page.handle_message
