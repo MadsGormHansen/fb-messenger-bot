@@ -131,7 +131,7 @@ def send(message):
             return person_detect1var
         elif person_detect1var != "none" and anledning_detect1var != "none":
             return person_detect3var
-        elif anledning_detect1var != "none" and :
+        elif anledning_detect1var != "none":
             return anledning_detect1var
         elif person_detect2var != "none":
             return person_detect2var
