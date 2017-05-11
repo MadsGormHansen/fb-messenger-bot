@@ -191,9 +191,7 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-
-
-
+    print "message handle", messsage 
 
 @page.handle_postback
 def received_postback(event): 
@@ -219,6 +217,7 @@ def callback_clicked_button(payload, event):
     
     page.send(sender_id, reply_blomsterpayload)
     
+    print "Callback", payload 
 
 @page.after_send
 def after_send(payload, response):
