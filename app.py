@@ -206,6 +206,8 @@ def received_postback(event):
     elif payload == "AfterURL":
         page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
     else: "Error, Postback"
+
+    print "handle postback payload", payload
     
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
