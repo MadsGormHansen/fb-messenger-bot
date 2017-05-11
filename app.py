@@ -31,20 +31,20 @@ def webhook():
 Velkomst_send = ["Hej og velkommen til Interflora! Jeg er din automatiske chatbot og vil hjælpe dig med at finde det rigtige. Fortæl først, hvad du kigger efter, fx  blomster, chokolade, vin eller gavepakker.","Hej, hvad kan jeg hjælpe dig med? Jeg er din chatbot, og du skal blot fortælle, hvad du er interesseret i, så vil jeg prøve at hjælpe dig. "]
 Kom_i_gang =["Kom igang"]
 
-eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har", "bruge", "have", "finde" )
+eftervelkomst_receive1 = ("købe", "se", "undersøge", "sende", "tænke", "tænkte", "hjælpe", "hjælp", "har", "bruge", "have", "finde", "sende")
 eftervelkomst_receive2 = ("blomster", "buketter", "flot", "blomst", "buket") 
 eftervelkomst_receive3 = ("alkohol", "gin", "rom", "vodka", "cognac", "vin", "øl", "smag")
 eftervelkomst_receive4 = ("chokolade", "kakao", "lækkerier", "soedt")
 eftervelkomst_receive5 = ("gave", "pakke")
 
-eftervelkomst_receive12 = ("til","holder", "gør", "skal")
+eftervelkomst_receive12 = ("til","holder", "gør", "skal", "afholder")
 interesseret = ("interesseret")
 blomster = ("blomster","blomst")
 
 eftervelkomst_send1 = ("Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl hvem der skal have blomster, eller om de er til en særlig anledning, fx bryllup eller fødselsdag", "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?")
 
 eftervelkomst_send2 = ("hvem har du tænkt dig at give en gave? Jeg kan andbefale vores nye ASK gin!", "hvem kan jeg hjælpe dig med at give en gave?")
-eftervelkomst_send3 = ("Jeg elsker chokolade ", u"hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
+eftervelkomst_send3 = ("Jeg elsker chokolade ", "hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
 
 person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate")
@@ -63,6 +63,19 @@ quick_replies = [
   QuickReply(title="Chokolade", payload="PICK_chokolade"),
   QuickReply(title="Gave", payload="PICK_Gave")
 ]
+
+blomster_url = Template.Generic([
+  Template.GenericElement("Lav tæt buket (Florist Choice)",
+                          subtitle="Overlad trygt ansvaret til vores dygtige florister og lad dem sammensætte en tæt, smuk og unik buket der vil skabe glæde hos den heldige modtager.",
+                          item_url="https://www.interflora.dk/produkt/lav-taet-buket-florist-choice",
+                          image_url="C:\Users\WIN10-MADS\Documents\GitHub\fb-messenger-bot\Lav_taet_buket_florist_choice_mellem.jpg",
+                          buttons=[
+                              Template.ButtonWeb("Til hjemmeside", "https://www.interflora.dk/produkt/lav-taet-buket-florist-choice"),
+                              Template.ButtonPostBack("Ikke bedste match? ", "DEVELOPED_DEFINED_PAYLOAD"),
+                              Template.ButtonWeb("Shop videre på vores hjemmeside!", "https://www.interflora.dk/")
+                          ])
+])
+
 
 
 def efter_velkomst(message):
@@ -100,7 +113,7 @@ def person_detect3(message):
 def anledning_detect1(message):
     for word in message.split():
         if word.lower() in Anledning:
-            return "Ok, du skal til" + " " + str(word)+ ". Hvem afholder" +" "+ str(word)+"."
+            return "Ok, du skal til" + " " + str(word)+ ". Hvem afholder" +" "+ str(word)+"?"
     return "none"
 
 
@@ -121,7 +134,7 @@ def third_trigger(message):
         
 def fourth_trigger(message):
      for word in message.split():
-        if word.lower() in interesseret:
+        if word.lower() in Pris_detect:
             return 1
         
 def send(message):
@@ -158,9 +171,9 @@ def send(message):
             return person_detect1var
         else: return "none1"
     elif third_trigger_var == 1:
-        if fourth_trigger_var == 1: 
-            return Pris_send
-        else: "none3"
+        return Pris_send
+    elif fourth_trigger_var == 1:
+        return "send url"
     else: return "none2"
     
 @page.handle_message
@@ -173,7 +186,12 @@ def received_message(event):
     reply_text = reply_text if isinstance(reply_text, str) else reply_text.encode('utf-8') if isinstance(reply_text,unicode) else None
     if reply_text == "send quickreply1":
         page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+    elif reply_text == "send url":
+        page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
+
+
+
 
 
 @page.handle_postback
