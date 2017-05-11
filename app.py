@@ -49,7 +49,7 @@ eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at gi
 
 person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate", "mor,", "far,", "kæreste,", "kone,", "forældre,")
 
-Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "dag", "morsdag", "farsdag", "begravelse", "sygdom", "fordi", "fylder")
+Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors.dag", "morsdag", "farsdag","fars.dag" ,"begravelse", "sygdom", "fordi", "fylder")
 
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
@@ -94,7 +94,7 @@ def efter_velkomst(message):
 def person_detect1(message):
     for word in message.split():
         if word.lower() in person_detect:
-            return "I hvilken anledning vil du gerne gi’ din" +" " + str(word)+ " " + "blomster? Fx fødselsdag, Mors Dag eller andet?"
+            return "I hvilken anledning vil du gerne gi’ din" +" " + str(word)+ " " + "blomster? Fx fødselsdag, bryllup eller andet?"
     return "none"
 
 
