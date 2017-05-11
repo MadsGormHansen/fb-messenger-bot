@@ -190,7 +190,7 @@ def received_message(event):
     if reply_text == "send quickreply1":
         page.send(sender_id, "Jeg er en chatbot og bliver kun klogere af data. Forstår ikke helt hvad du siger, kan du hælpe mig lidt? Hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     elif reply_text == "send url":
-        page.send(sender_id, "Jeg har fundet den bedste match!", blomster_url)
+        page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
 
