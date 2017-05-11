@@ -129,7 +129,7 @@ def second_trigger(message):
 
 def third_trigger(message):
     for word in message.split():
-        if word.lower() in interesseret:
+        if word.lower() in blomster:
             return 1
         
 def fourth_trigger(message):
