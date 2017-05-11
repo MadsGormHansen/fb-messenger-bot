@@ -218,8 +218,6 @@ def callback_clicked_button(payload, event):
     reply_blomsterpayload =  "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?"
     
     page.send(sender_id, reply_blomsterpayload)
-
-    return "payload in postback", payload
     
 
 @page.after_send
