@@ -64,6 +64,7 @@ quick_replies = [
   QuickReply(title="Gave", payload="PICK_Gave")
 ]
 
+
 blomster_url = Template.Generic([
   Template.GenericElement("Lav tæt buket (Florist Choice)",
                           subtitle="Overlad trygt ansvaret til vores dygtige florister og lad dem sammensætte en tæt, smuk og unik buket der vil skabe glæde hos den heldige modtager.",
@@ -190,7 +191,6 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-    print "message handle", messsage 
 
 @page.handle_postback
 def received_postback(event): 
