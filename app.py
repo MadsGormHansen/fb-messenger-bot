@@ -201,7 +201,7 @@ def received_postback(event):
     payload = event.postback_payload
     reply_payload = random.choice(Velkomst_send)
     
-    if payload == "USER_DEFINED_PAYLOAD":
+    if payload == "Kom igang":
         page.send(sender_id, reply_payload)
     elif payload == "AfterURL":
         page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
