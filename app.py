@@ -153,9 +153,9 @@ def send(message):
             return Pris_send
         elif eftervelkomstvar == 1 and anledning_detect1var != "none":
             return "Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl, hvem er den heldige som skal have en flot buket blomster?"
-        elif eftervelkomstvar == 1 and person_detect2var != "none":
-            return person_detect3var
-        elif person_detect1var != "none" and anledning_detect1var != "none":
+        elif eftervelkomstvar == 1 and person_detect1var != "none":
+            return person_detect1var
+        elif person_detect3var != "none" and anledning_detect1var != "none":
             return person_detect3var
         elif anledning_detect1var != "none":
             return anledning_detect1var
