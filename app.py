@@ -153,8 +153,8 @@ def send(message):
             return Pris_send
         elif eftervelkomstvar == 1 and anledning_detect1var != "none":
             return "Ok, så vil jeg hjælpe dig med at finde den rigtige buket. Fortæl, hvem er den heldige som skal have en flot buket blomster?"
-        elif eftervelkomstvar == 1 and person_detect1var != "none":
-            return person_detect1var
+        elif eftervelkomstvar == 1 and person_detect2var != "none":
+            return person_detect3var
         elif person_detect1var != "none" and anledning_detect1var != "none":
             return person_detect3var
         elif anledning_detect1var != "none":
@@ -165,6 +165,8 @@ def send(message):
             return random.choice(eftervelkomst_send1)
         else: return "send quickreply1"  
     elif second_trigger_var == 1:
+        if person_detect3var != "none" and anledning_detect1var != "none":
+            return person_detect3var
         if anledning_detect1var != "none":
             return Pris_send
         elif person_detect1var != "none":
@@ -186,7 +188,7 @@ def received_message(event):
     reply_text = send(message)
     reply_text = reply_text if isinstance(reply_text, str) else reply_text.encode('utf-8') if isinstance(reply_text,unicode) else None
     if reply_text == "send quickreply1":
-        page.send(sender_id, "Jeg forstaer ikke, hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
+        page.send(sender_id, "Jeg er en chatbot og bliver kun klogere af data. Forstår ikke helt hvad du siger, kan du hælpe mig lidt? Hvad oensker du at undersoege?", quick_replies=quick_replies, metadata="DEVELOPER_DEFINED_METADATA")
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
@@ -206,7 +208,7 @@ def received_postback(event):
         page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
     else: "Error, Postback"
 
-    
+
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
     sender_id = event.sender_id
