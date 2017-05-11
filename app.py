@@ -175,7 +175,6 @@ def send(message):
         return Pris_send
     elif fourth_trigger_var == 1:
         return "send url"
-    else: return "none2"
     
 @page.handle_message
 def received_message(event):
@@ -207,7 +206,6 @@ def received_postback(event):
         page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
     else: "Error, Postback"
 
-    print "handle postback payload", payload
     
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
@@ -216,8 +214,6 @@ def callback_clicked_button(payload, event):
     reply_blomsterpayload =  "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?"
     
     page.send(sender_id, reply_blomsterpayload)
-    
-    print "Callback", payload 
 
 @page.after_send
 def after_send(payload, response):
