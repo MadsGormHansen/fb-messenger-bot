@@ -72,7 +72,7 @@ blomster_url = Template.Generic([
                           image_url="https://github.com/MadsGormHansen/fb-messenger-bot/blob/master/Lav_taet_buket_florist_choice_mellem.jpg",
                           buttons=[
                               Template.ButtonWeb("Til produkt", "https://www.interflora.dk/produkt/lav-taet-buket-florist-choice"),
-                              Template.ButtonPostBack("Find bedste match ", "AfterURL"),
+                              Template.ButtonPostBack("Find bedre match", "AfterURL"),
                               Template.ButtonWeb("Til hjemmeside", "https://www.interflora.dk/")
                           ])
 ])
