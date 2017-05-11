@@ -69,7 +69,7 @@ blomster_url = Template.Generic([
   Template.GenericElement("Lav tæt buket (Florist Choice)",
                           subtitle="Overlad trygt ansvaret til vores dygtige florister og lad dem sammensætte en tæt, smuk og unik buket der vil skabe glæde hos den heldige modtager.",
                           item_url="https://www.interflora.dk/produkt/lav-taet-buket-florist-choice",
-                          image_url="https://github.com/MadsGormHansen/fb-messenger-bot/blob/master/Lav_taet_buket_florist_choice_mellem.jpg",
+                          image_url="https://www.interflora.dk/sites/default/files/styles/product_large/public/Lav_taet_buket_florist_choice_mellem_1825.jpg?itok=_7FnADUk",
                           buttons=[
                               Template.ButtonWeb("Til produkt", "https://www.interflora.dk/produkt/lav-taet-buket-florist-choice"),
                               Template.ButtonPostBack("Find bedre match", "AfterURL"),
