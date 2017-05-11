@@ -68,7 +68,7 @@ blomster_url = Template.Generic([
   Template.GenericElement("Lav tæt buket (Florist Choice)",
                           subtitle="Overlad trygt ansvaret til vores dygtige florister og lad dem sammensætte en tæt, smuk og unik buket der vil skabe glæde hos den heldige modtager.",
                           item_url="https://www.interflora.dk/produkt/lav-taet-buket-florist-choice",
-                          image_url="https://www.interflora.dk/sites/default/files/styles/product_medium/public/lav_taet_buket_florist_choice_mellem_1825.jpg?itok=pISg00Fw",
+                          image_url="https://www.interflora.dk/sites/default/files/styles/product_medium/public/lav_taet_buket_florist_choice_mellem_1825.jpg",
                           buttons=[
                               Template.ButtonWeb("Til hjemmeside", "https://www.interflora.dk/produkt/lav-taet-buket-florist-choice"),
                               Template.ButtonPostBack("Find bedste match? ", "AfterURL"),
@@ -170,6 +170,8 @@ def send(message):
             return person_detect1var
         else: return "none1"
     elif third_trigger_var == 1:
+        return Pris_send
+    elif anledning_detect1var != "none":
         return Pris_send
     elif fourth_trigger_var == 1:
         return "send url"
