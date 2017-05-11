@@ -58,7 +58,7 @@ Pris_detect = ("kr", "koste")
 Pris_send = ("Fint, har du tænkt på, hvor meget buketten cirka skal koste?")  
 
 quick_replies = [
-  QuickReply(title="Blomster", payload="PICK_Blomster"),
+  QuickReply(title="Blomst", payload="PICK_Blomster"),
   QuickReply(title="Alkohol", payload="PICK_Alkohol"),
   QuickReply(title="Chokolade", payload="PICK_chokolade"),
   QuickReply(title="Gave", payload="PICK_Gave")
