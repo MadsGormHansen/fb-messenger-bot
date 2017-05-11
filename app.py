@@ -202,11 +202,11 @@ def received_postback(event):
     reply_payload = random.choice(Velkomst_send)
     
     if payload == "USER_DEFINED_PAYLOAD":
-        return page.send(sender_id, reply_payload)
+        page.send(sender_id, reply_payload)
     elif payload == "AfterURL":
-        return page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
+        page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
     else: "Error, Postback"
-
+    
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
     sender_id = event.sender_id
