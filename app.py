@@ -68,14 +68,13 @@ blomster_url = Template.Generic([
   Template.GenericElement("Lav tæt buket (Florist Choice)",
                           subtitle="Overlad trygt ansvaret til vores dygtige florister og lad dem sammensætte en tæt, smuk og unik buket der vil skabe glæde hos den heldige modtager.",
                           item_url="https://www.interflora.dk/produkt/lav-taet-buket-florist-choice",
-                          image_url="https://www.interflora.dk/sites/default/files/styles/product_medium/public/lav_taet_buket_florist_choice_mellem_1825.jpg",
+                          image_url="https://www.interflora.dk/sites/default/files/styles/product_medium/public/lav_taet_buket_florist_choice_mellem_1825.jpg?itok=pISg00Fw",
                           buttons=[
                               Template.ButtonWeb("Til hjemmeside", "https://www.interflora.dk/produkt/lav-taet-buket-florist-choice"),
-                              Template.ButtonPostBack("Ikke bedste match? ", "DEVELOPED_DEFINED_PAYLOAD"),
-                              Template.ButtonWeb("Shop videre på vores hjemmeside!", "https://www.interflora.dk/")
+                              Template.ButtonPostBack("Find bedste match? ", "AfterURL"),
+                              Template.ButtonWeb("Til hjemmeside", "https://www.interflora.dk/")
                           ])
 ])
-
 
 
 def efter_velkomst(message):
@@ -202,7 +201,11 @@ def received_postback(event):
     payload = event.postback_payload
     reply_payload = random.choice(Velkomst_send)
     
-    page.send(sender_id, reply_payload)
+    if payload = "USER_DEFINED_PAYLOAD":
+        return page.send(sender_id, reply_payload)
+    elif payload = "AfterURL":
+        return "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?
+    else: "Error: Postback"
 
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
