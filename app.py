@@ -47,9 +47,9 @@ eftervelkomst_send2 = ("hvem har du tænkt dig at give en gave? Jeg kan andbefal
 eftervelkomst_send3 = ("Jeg elsker chokolade ", "hvem kan jeg hjaelpe dig med at give en gave? Jeg kan andbefale cho cho chokolade!")
 eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at give en gave")
 
-person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate")
+person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate", "mor,", "far,", "kæreste,", "kone,", "forældre,")
 
-Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors dag", "morsdag", "fars dag", "farsdag", "begravelse", "sygdom", "fordi", "fylder")
+Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "dag", "morsdag", "farsdag", "begravelse", "sygdom", "fordi", "fylder")
 
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
