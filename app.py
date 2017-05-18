@@ -49,7 +49,7 @@ eftervelkomst_send3 = ("hvem tænker du at give en gave", "hvem ønsker du at gi
 
 person_detect = ("mor", "mors", "far", "fars" , "kæreste", "kærestes", "kone", "kones", "sambo", "forældre", "forældres", "medarbejder", "kollega", "teammate", "mor,", "far,", "kæreste,", "kone,", "forældre,")
 
-Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "mors.dag", "morsdag", "farsdag","fars.dag" ,"begravelse", "sygdom", "fordi", "fylder")
+Anledning = ("jubilæum", "fødselsdag", "bryllup", "kobberbryllup", "guldbryllup", "sølvbryllup", "bryllupsdag", "farsdag","morsdag" ,"begravelse", "sygdom", "fordi", "fylder")
 
 Andledning_send = ("hvilken anledning gives der blomster til?")
 
