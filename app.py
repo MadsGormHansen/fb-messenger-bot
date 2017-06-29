@@ -18,11 +18,13 @@ def verify():
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
+
     return "Hello world", 200
 
 @app.route('/', methods=['POST'])
 def webhook():
     page.handle_webhook(request.get_data(as_text=True))
+    return "ok"
 
 Kom_i_gang = ["Kom igang"]
 Velkomst_send = "Hej og velkommen til Interflora! Mit navn er Flora og jeg er din automatiske chatbot som vil hjælpe dig med at finde det helt rigtige. Fortæl først, hvad du kigger efter, fx blomster, chokolade, vin eller gavepakker."
@@ -187,6 +189,7 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
+    
     print(reply_text)
     print(message)
 
