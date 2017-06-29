@@ -25,7 +25,6 @@ def verify():
 @app.route('/', methods=['POST'])
 def webhook():
 
-
 Velkomst_send = ("Hej og velkommen til Interflora! Mit navn er Flora og jeg er din automatiske chatbot som vil hjælpe dig med at finde det helt rigtige. Fortæl først, hvad du kigger efter, fx blomster, chokolade, vin eller gavepakker.")
 Kom_i_gang = ("Kom igang")
 
