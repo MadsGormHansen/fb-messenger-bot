@@ -18,7 +18,6 @@ def verify():
         if not request.args.get("hub.verify_token") == os.environ["VERIFY_TOKEN"]:
             return "Verification token mismatch", 403
         return request.args["hub.challenge"], 200
-    
     return "Hello world", 200
 
 @app.route('/', methods=['POST'])
@@ -217,6 +216,6 @@ def callback_clicked_button(payload, event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
-    print("ok")
+    print(reply_text)
     
 
