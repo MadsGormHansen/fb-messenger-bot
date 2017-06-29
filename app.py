@@ -5,7 +5,6 @@ import json
 import random
 from flask import Flask, request
 from fbmq import Attachment, Template, QuickReply, Page
-from models import *
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
