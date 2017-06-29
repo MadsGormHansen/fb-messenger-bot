@@ -5,17 +5,11 @@ import json
 import random
 from flask import Flask, request
 from fbmq import Attachment, Template, QuickReply, Page
-
+from models import *
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
 app = Flask(__name__)
-
-#config
-app.config.from_object(os.environ['APP_SETTINGS'])
-print os.environ['APP_SETTINGS']
-
-db = SQLALchemy(app)
 
 @app.route('/', methods=['GET'])
 def verify():
