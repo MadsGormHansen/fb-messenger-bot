@@ -196,7 +196,7 @@ def received_postback(event):
     recipient_id = event.recipient_id
     time_of_postback = event.timestamp
     payload = event.postback_payload
-    reply_payload = random.choice(Velkomst_send)
+    reply_payload = Velkomst_send
     
     if payload == "Kom igang":
         page.send(sender_id, reply_payload)
@@ -217,5 +217,6 @@ def callback_clicked_button(payload, event):
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
     print(reply_text)
+    print(message)
     
 
