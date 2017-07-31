@@ -4,11 +4,20 @@ import sys
 import json
 import random
 from flask import Flask, request
+from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
-page = Page(os.environ["PAGE_ACCESS_TOKEN"])
-
 app = Flask(__name__)
+
+app.secret_key= "MA1114ha"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?DRIVER=SQL Server Native Client 11.0'
+
+#engine = app.create_engine("mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0")
+
+db = SQLAlchemy(app)
+
+page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -175,7 +184,7 @@ def send(message):
         return Pris_send
     elif fourth_trigger_var == 1:
         return "send url"
-    
+
 @page.handle_message
 def received_message(event):
     sender_id = event.sender_id
@@ -222,6 +231,5 @@ def callback_clicked_button(payload, event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
- 
     
 
