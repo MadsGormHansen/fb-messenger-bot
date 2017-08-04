@@ -225,11 +225,9 @@ def callback_clicked_button(payload, event):
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     reply_blomsterpayload =  "Hvem skal have blomsterne? Er de måske til en særlig anledning, fx bryllup eller fødselsdag?"
-    
     page.send(sender_id, reply_blomsterpayload) 
 
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
-    
-
+    return db.session.add(Result("good22321313","Idafdd2","I23"))
