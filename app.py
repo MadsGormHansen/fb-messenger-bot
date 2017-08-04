@@ -227,7 +227,7 @@ def callback_clicked_button(payload, event):
 
 @page.after_send
 def after_send(payload, response):
-    db.session.add(Result("Good123233","I12323233","I232222"))
-    db.session.commit()
+    #db.session.add(Result("Good123233","I12323233","I232222"))
+    #db.session.commit()
 
     """:type payload: fbmq.Payload"""
