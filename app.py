@@ -198,10 +198,9 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
-    
-    print(reply_text)
-    print(message)
 
+    db.session.add(Result(sender_id, message, reply_text))
+    db.session.commit()
 
 @page.handle_postback
 def received_postback(event): 
