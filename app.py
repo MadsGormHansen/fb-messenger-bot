@@ -199,9 +199,6 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
-    
-    db.session.add(Result(Session_id=sender_id,Receive_text=message,Send_text=reply_text))
-    db.session.commit()
 
     print(message)
     print(reply_text)
@@ -231,3 +228,5 @@ def callback_clicked_button(payload, event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
+    db.session.add(Result(Session_id=sender_id,Receive_text=message,Send_text=reply_text))
+    db.session.commit()
