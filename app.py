@@ -182,7 +182,7 @@ def send(message):
 def received_message(event):    
     app.secret_key= "MA1114ha"
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
 
     db = SQLAlchemy(app)
     sender_id = event.sender_id
