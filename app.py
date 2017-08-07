@@ -10,14 +10,6 @@ from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
-app.secret_key= "MA1114ha"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
-
-#engine = app.create_engine("mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0")
-
-db = SQLAlchemy(app)
-
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
 @app.route('/', methods=['GET'])
@@ -187,7 +179,13 @@ def send(message):
         return "send url"
 
 @page.handle_message
-def received_message(event):
+def received_message(event):    
+    app.secret_key= "MA1114ha"
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
+
+     db = SQLAlchemy(app)
+
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text.encode('utf8')
@@ -200,7 +198,10 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-    db.session.add(Result("3","223fjakflj2","I45"))
+   
+    db.session.add(Result("3","iddfd","Idfadfa45"))
+
+    db.session.commit()
     print(message)
     print(reply_text)
     print(sender_id)
