@@ -198,9 +198,7 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
-
-    print(sender_id)
-    print(message)
+ 
     print(reply_text)
 
 @page.handle_postback
@@ -226,7 +224,5 @@ def callback_clicked_button(payload, event):
 
 @page.after_send
 def after_send(payload, response):
-   print(payload)
-
     """:type payload: fbmq.Payload"""
 
