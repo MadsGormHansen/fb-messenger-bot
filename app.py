@@ -4,6 +4,7 @@ import sys
 import json
 import random
 from flask import Flask, request
+from model import Result
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
@@ -199,7 +200,7 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
  
-    #db.session.add(Result(sender_id,message,reply_text))
+    db.session.add(Result(sender_id,message,reply_text))
 
     print(message)
     print(reply_text)
