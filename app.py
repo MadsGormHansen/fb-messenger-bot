@@ -200,6 +200,7 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
+    db.session.add(Result("3","223fjakflj2","I45"))
     print(message)
     print(reply_text)
     print(sender_id)
