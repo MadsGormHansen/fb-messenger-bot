@@ -12,7 +12,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@resp
 
 db = SQLAlchemy(app)
 
-db.session.add(Result("Good","I","I23"))
-db.session.add(Result("Good2","i2","I45"))
+db.session.add(Result("1","I","I23"))
+db.session.add(Result("2","i2","I45"))
 
 db.session.commit()
