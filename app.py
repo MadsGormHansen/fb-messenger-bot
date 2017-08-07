@@ -201,6 +201,7 @@ def received_message(event):
  
     print(message)
     print(reply_text)
+    print(sender_id)
 
 @page.handle_postback
 def received_postback(event): 
