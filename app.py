@@ -10,6 +10,10 @@ from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
+app.secret_key= "MA1114ha"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
+
 #engine = app.create_engine("mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0")
 
 db = SQLAlchemy(app)
@@ -195,12 +199,8 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
- 
-    app.secret_key= "MA1114ha"
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
-
-    db.session.add(Result(sender_id,message,reply_text))
+    
+    db.session.add(Result(Session_id=sender_id,Receive_text=message,Send_text=reply_text))
     db.session.commit()
 
     print(message)
@@ -231,4 +231,3 @@ def callback_clicked_button(payload, event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
-
