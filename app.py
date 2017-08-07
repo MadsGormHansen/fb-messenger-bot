@@ -200,6 +200,7 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
+    db.session.add(Result(print(sender_id),print(reply_text),print(message)))
 
 @page.handle_postback
 def received_postback(event): 
@@ -215,9 +216,6 @@ def received_postback(event):
         page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
     else: "Error, Postback"
 
-    print(payload)
-    print(reply_payload)
-
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
     sender_id = event.sender_id
@@ -232,4 +230,3 @@ def after_send(payload, response):
 
     """:type payload: fbmq.Payload"""
 
-    
