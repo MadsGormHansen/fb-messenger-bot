@@ -3,7 +3,6 @@ import os
 import sys
 import json
 import random
-from models import Result
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
@@ -200,6 +199,10 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
+    print(sender_id)
+    print(message)
+    print(reply_text)
+
 @page.handle_postback
 def received_postback(event): 
     sender_id = event.sender_id
@@ -223,8 +226,7 @@ def callback_clicked_button(payload, event):
 
 @page.after_send
 def after_send(payload, response):
-    #db.session.add(Result("Good123233","I12323233","I232222"))
-    #db.session.commit()
+   print(payload)
 
     """:type payload: fbmq.Payload"""
 

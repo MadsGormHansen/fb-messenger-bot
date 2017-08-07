@@ -5,9 +5,9 @@ class Result(db.Model):
     __tablename__ = 'Results'
 
     id = db.Column(db.Integer, primary_key=True)
-    Session_id = db.Column(db.String, nullable=False)
-    Receive_text = db.Column(db.String, nullable=False)
-    Send_text = db.Column(db.String, nullable=False)
+    Session_id = db.Column(db.String, nullable=True)
+    Receive_text = db.Column(db.String, nullable=True)
+    Send_text = db.Column(db.String, nullable=True)
 
     def __init__(self, Session_id, Receive_text, Send_text):
         self.Session_id = Session_id
@@ -16,3 +16,4 @@ class Result(db.Model):
 
     def __repr__(self):
         return '<Session {}>'.format(self.Session)
+
