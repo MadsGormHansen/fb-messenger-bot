@@ -199,6 +199,7 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
  
+    print(message)
     print(reply_text)
 
 @page.handle_postback
