@@ -4,7 +4,7 @@ import sys
 import json
 import random
 from flask import Flask, request
-from model import Result
+from models import Result
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
