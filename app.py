@@ -186,7 +186,6 @@ def send(message):
 
 @page.handle_message
 def received_message(event): 
-    connect
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text.encode('utf8')
@@ -198,9 +197,7 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
-
-    db.session.add(Result(sender_id, message, reply_text))
-    db.session.commit()
+    Dataexport= Result(sender_id, message, reply_text)
 
 @page.handle_postback
 def received_postback(event): 
