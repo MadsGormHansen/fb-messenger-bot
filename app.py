@@ -14,7 +14,7 @@ db = SQLAlchemy(app)
 
 app.secret_key= "MA1114ha"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-connect= app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
@@ -197,7 +197,12 @@ def received_message(event):
     elif reply_text == "send url":
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
-    Dataexport= Result(sender_id, message, reply_text)
+
+    Dataexport=Result(sender_id, message, reply_text)
+    db.session.add(Dataexport)
+    db.session.commit()
+
+    print(message)
 
 @page.handle_postback
 def received_postback(event): 
