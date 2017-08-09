@@ -198,11 +198,7 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-    #Dataexport=Result(sender_id, message, reply_text)
-    #db.session.add(Dataexport)
-    #db.session.commit()
-
-    print(message)
+print(received_message(event))
 
 @page.handle_postback
 def received_postback(event): 
@@ -228,5 +224,8 @@ def callback_clicked_button(payload, event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
+
+db.session.add(Result(event.sender_id, "asdfdf","adfjadklf"))
+db.session.commit()
 
 

@@ -1,6 +1,5 @@
 from flask import Flask
-#from models import Result
-from app import received_postback
+from models import Result
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
@@ -13,5 +12,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@resp
 
 db = SQLAlchemy(app)
 
-print(received_postback.sender_id)
+
+db.session.add(Result("123","dfafd","dfafd"))
+db.session.commit()
+
+
 
