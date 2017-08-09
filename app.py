@@ -186,6 +186,9 @@ def send(message):
 
 @page.handle_message
 def received_message(event): 
+    global sender_id
+    global message 
+    global reply_text
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text.encode('utf8')
@@ -198,7 +201,6 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-print(received_message(event))
 
 @page.handle_postback
 def received_postback(event): 
