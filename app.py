@@ -199,7 +199,11 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-print(sender_id)
+
+def print_senderid()
+    print(sender_id)
+
+print_senderid()
 #db.session.add(Result(sender_id, "fjfjfeie","dfadfefadfe"))
 #db.session.commit()
 
