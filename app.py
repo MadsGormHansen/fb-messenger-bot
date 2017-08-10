@@ -187,8 +187,6 @@ def send(message):
 @page.handle_message
 def received_message(event): 
     global sender_id
-    global message 
-    global reply_text
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text.encode('utf8')
@@ -201,6 +199,9 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
+
+db.session.add(Result(sender_id, "fjfjfeie","dfadfefadfe"))
+db.session.commit()
 
 @page.handle_postback
 def received_postback(event): 
@@ -227,7 +228,5 @@ def callback_clicked_button(payload, event):
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
 
-db.session.add(Result(sender_id, message,reply_text))
-db.session.commit()
 
 
