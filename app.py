@@ -186,7 +186,6 @@ def send(message):
 
 @page.handle_message
 def received_message(event): 
-    global sender_id
     sender_id = event.sender_id
     recipient_id = event.recipient_id
     message = event.message_text.encode('utf8')
@@ -199,13 +198,6 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
-
-def print_senderid()
-    print(sender_id)
-
-print_senderid()
-#db.session.add(Result(sender_id, "fjfjfeie","dfadfefadfe"))
-#db.session.commit()
 
 @page.handle_postback
 def received_postback(event): 
