@@ -3,8 +3,9 @@ import os
 import sys
 import json
 import random
+import pyodbc
 from flask import Flask, request
-from models import Result
+from models import *
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
@@ -224,5 +225,5 @@ def callback_clicked_button(payload, event):
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
 
-
-
+db.session.add(Result("1234567","dfdfa","madsmads"))
+db.session.commit()
