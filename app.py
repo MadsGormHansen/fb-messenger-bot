@@ -4,22 +4,20 @@ import sys
 import json
 import random
 from flask import Flask, request
-from models import *
-from flask_sqlalchemy import SQLAlchemy
+from models import Result
+from sqlalchemy import create_engine
 from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
-app.secret_key= "MA1114ha"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
-
-db = SQLAlchemy(app)
+engine= create_engine('mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0')
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
-db.session.add(Result("12321232", "hejehej", "hdfjjfead"))
-db.session.commit()
+connection = engine.connect()
+connection.add(Result("1234567", "dfdfasfd", "fadkleelle"))
+#connection.close()
+connection.close()
 
 @app.route('/', methods=['GET'])
 def verify():
@@ -203,6 +201,12 @@ def received_message(event):
 
     print(reply_text)
     print(message)
+
+    #connection = engine.connect()
+    #result = connection.execute("select username from users")
+    #   for row in result:
+    #   print("username:", row['username'])
+    #connection.close()
 
 @page.handle_postback
 def received_postback(event): 
