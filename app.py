@@ -10,10 +10,6 @@ from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
-app.secret_key= "MA1114ha"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
-
 db = SQLAlchemy(app)
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
@@ -198,6 +194,9 @@ def received_message(event):
         page.send(sender_id, blomster_url)
     else: page.send(sender_id, reply_text)
 
+     print(reply_text)
+     print(message)
+
 @page.handle_postback
 def received_postback(event): 
     sender_id = event.sender_id
@@ -205,7 +204,6 @@ def received_postback(event):
     time_of_postback = event.timestamp
     payload = event.postback_payload
     reply_payload = Velkomst_send
-    db
     
     if payload == "Kom igang":
         page.send(sender_id, reply_payload)
@@ -213,9 +211,6 @@ def received_postback(event):
         page.send(sender_id, "Ok, så prøver jeg igen! Er du måske mere interesseret i en god flaske vin eller vores helt egen Gin?")
     else: "Error, Postback"
 
-    db.session.add(Result("123", "hehj", "hdfaufh"))
-    db.session.commit()
-    
 @page.callback(['PICK_Blomster'])
 def callback_clicked_button(payload, event):
     sender_id = event.sender_id
