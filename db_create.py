@@ -15,9 +15,9 @@ db= SQLAlchemy(app)
 
 #engine = app.create_engine("mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0")
 
-#received_message.get('sender_id')
-
-
+receved_senderid= received_message.get('sender_id')
+db.session.add(Result(receved_senderid,"hej", "hej"))
+db.session.commit()
 
 #db.session.add(Result("222","heeheh","hidfj"))
 #db.session.commit()
