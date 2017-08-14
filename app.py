@@ -10,9 +10,16 @@ from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
+app.secret_key= "MA1114ha"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
+
 db = SQLAlchemy(app)
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
+
+db.session.add(Result("12321232", "hejehej", "hdfjjfead"))
+db.session.commit()
 
 @app.route('/', methods=['GET'])
 def verify():
