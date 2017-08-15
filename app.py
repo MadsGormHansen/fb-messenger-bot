@@ -14,10 +14,9 @@ engine= create_engine('mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.clo
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
-connection = engine.connect()
-connection.add(Result("1234567", "dfdfasfd", "fadkleelle"))
+#connection = engine.connect()
+#connection.add(Result("1234567", "dfdfasfd", "fadkleelle"))
 #connection.close()
-connection.close()
 
 @app.route('/', methods=['GET'])
 def verify():
