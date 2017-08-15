@@ -17,6 +17,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@resp
 
 db= SQLAlchemy(app)
 
+db.session.add(Result("222","heeheh","hidfj"))
 #connection = engine.connect()
 #connection.add(Result("1234567", "dfdfasfd", "fadkleelle"))
 #connection.close()
