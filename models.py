@@ -1,19 +1,11 @@
 from flask import Flask
-#from sqlalchemy.ext.declarative import declarative_base 
-from sqlalchemy import create_engine, Column, Integer, String
-
-app = Flask(__name__)
+from flask_sqlalchemy import SQLAlchemy
+from app import db
 
 #Base = declarative_base()
 #engine= create_engine('mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0')
 
-app.secret_key= "MA1114ha"
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
-
-db= SQLAlchemy(app)
-
-class Result(Base):
+class Result(db.Model):
     __tablename__ = 'Results'
 
     id = db.Column(db.Integer, primary_key=True)
