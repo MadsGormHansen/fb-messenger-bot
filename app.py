@@ -10,7 +10,7 @@ from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
-engine= create_engine('mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0')
+#engine= create_engine('mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0')
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
