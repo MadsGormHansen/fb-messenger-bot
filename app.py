@@ -3,9 +3,10 @@ import os
 import sys
 import json
 import random
+import pyodbc
 from flask import Flask, request
 from models import Result
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, add
 from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)

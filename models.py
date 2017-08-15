@@ -10,10 +10,10 @@ engine= create_engine('mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.clo
 class Result(Base):
     __tablename__ = 'Results'
 
-    id = db.Column(db.Integer, primary_key=True)
-    Session_id = db.Column(db.Integer, nullable=True)
-    Receive_text = db.Column(db.String, nullable=True)
-    Send_text = db.Column(db.String, nullable=True)
+    id = Column(Integer, primary_key=True)
+    Session_id = Column(Integer, nullable=True)
+    Receive_text = Column(String, nullable=True)
+    Send_text = Column(String, nullable=True)
 
     def __init__(self, Session_id, Receive_text, Send_text):
         self.Session_id = Session_id
