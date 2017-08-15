@@ -4,6 +4,8 @@ import sys
 import json
 import random
 from flask import Flask, request
+from models import *
+from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
