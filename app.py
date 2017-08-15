@@ -4,7 +4,6 @@ import sys
 import json
 import random
 from flask import Flask, request
-from models import *
 from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
@@ -17,7 +16,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@resp
 
 db= SQLAlchemy(app)
 
-db.session.add(Result("222","heeheh","hidfj"))
+db.session.add(Result("11111222","heeheh","hidfj"))
 #connection = engine.connect()
 #connection.add(Result("1234567", "dfdfasfd", "fadkleelle"))
 #connection.close()
