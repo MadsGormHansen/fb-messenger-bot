@@ -14,7 +14,7 @@ app.secret_key= "MA1114ha"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
 
-db.session.connect()
+db.session.connection.connect()
 db.session.add(Result("11111222","heeheh","hidfj"))
 db.session.commit()
 db.session.connection.close()
