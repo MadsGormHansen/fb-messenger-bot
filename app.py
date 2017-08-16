@@ -3,23 +3,15 @@ import os
 import sys
 import json
 import random
-import pypyodbc
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
-#app.secret_key= "MA1114ha"
-#app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-#app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
-
-#connection = engine.connect()
-#connection.add(Result("1234567", "dfdfasfd", "fadkleelle"))
-#connection.close()
-
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
+db = SQLAlchemy(app)
 @app.route('/', methods=['GET'])
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
@@ -202,19 +194,6 @@ def received_message(event):
 
     print(reply_text)
     print(message)
-
-    conn = pypyodbc.connect("DRIVER={SQL+Server+Native+Client+11.0};SERVER=responsive-sandbox.cloudapp.net;UID=mgh;PWD=Analytics4ever1;DATABASE=SMP")
-    SQLCommand = ("INSERT INTO [SMP].[dbo].[Results] (Session_id,Receive_text, Send_text) VALUES (?,?,?)")    
-    Values = ["123456","hejehej","virkergaranteretikk"] 
-    cursor = conn.cursor()
-    cursor.execute(SQLCommand,Values)
-    conn.commit()
-    conn.close()
-    #connection = engine.connect()
-    #result = connection.execute("select username from users")
-    #   for row in result:
-    #   print("username:", row['username'])
-    #connection.close()
 
 @page.handle_postback
 def received_postback(event): 
