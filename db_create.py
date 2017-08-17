@@ -1,4 +1,3 @@
-import numpy as np
 from flask import Flask
 from models import db, Result
 from app import received_message
@@ -13,6 +12,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@resp
 
 var= vars(received_message)
 
-text_file = open("Output.txt", "w")
+text_file = open("testsheet.txt", "w")
 text_file.write(var)
 text_file.close()
