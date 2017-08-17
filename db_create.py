@@ -10,8 +10,10 @@ app.secret_key= "MA1114ha"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
 
+
+
 #db.session.add(Result("12321", "fjfjfeie","dfadfefadfe"))
 #db.session.commit()
 
-code = inspect.getsource(received_message)
-print code
+#code = inspect.getmembers(received_message)
+#print code
