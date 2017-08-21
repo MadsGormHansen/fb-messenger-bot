@@ -4,14 +4,18 @@ import sys
 import json
 import random
 from flask import Flask, request
+from models import Result, db
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
 app = Flask(__name__)
 
+app.secret_key= "MA1114ha"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
+
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
-db = SQLAlchemy(app)
 @app.route('/', methods=['GET'])
 def verify():
     # when the endpoint is registered as a webhook, it must echo back
@@ -219,3 +223,4 @@ def callback_clicked_button(payload, event):
 @page.after_send
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
+
