@@ -16,8 +16,6 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@resp
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
-db.session.add(Result("123","ADv","dafjkl"))
-db.session.commit()
 
 @app.route('/', methods=['GET'])
 def verify():
