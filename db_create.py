@@ -1,5 +1,6 @@
 import os
 import inspect
+import logging
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from models import Result
@@ -12,6 +13,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://mgh:Analytics4ever1@responsive-sandbox.cloudapp.net/SMP?driver=SQL+Server+Native+Client+11.0'
 
 code = inspect.getsource(received_message)
-print code
+logging.warning(code)
 #db.session.add(Result("1234","hjehj","dfhafei"))
 #db.seesion.commit()
