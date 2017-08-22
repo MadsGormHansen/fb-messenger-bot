@@ -7,6 +7,7 @@ from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from fbmq import Attachment, Template, QuickReply, Page
 
+
 app = Flask(__name__)
 
 page = Page(os.environ["PAGE_ACCESS_TOKEN"])

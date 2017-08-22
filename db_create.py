@@ -30,5 +30,3 @@ from models import Result, db
 
 db.session.add(Result("121", "det virker", "det virker yess"))
 db.session.commit()
-
-print('det virker')
