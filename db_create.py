@@ -36,6 +36,6 @@ page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
 @page.handle_message
 def getvalues(event):
-    Value=inspect.getmoduleinfo(received_message)
+    Value=inspect.getmembers(received_message)
 
 print getvalues
