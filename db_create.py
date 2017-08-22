@@ -26,13 +26,12 @@ def when_received(event):
 '''
  # coding: utf-8
 import os
+import inspect
 from fbmq import Page
 from flask_sqlalchemy import SQLAlchemy
 from models import Result, db
 from app import received_message
 
-senderid=received_message.Sender_id
-messageimport= received_message.message
-replytextimport=received_message.reply_text
-Value = (senderid ,messageimport ,replytextimport)
+
+Value=inspect.getmoduleinfo(received_message)
 print(Value)
