@@ -34,5 +34,6 @@ from app import received_message
 
 def values():
     value= 1
+    print(value)
 
 print(values)
