@@ -32,6 +32,10 @@ from flask_sqlalchemy import SQLAlchemy
 from models import Result, db
 from app import received_message
 
+page = Page(os.environ["PAGE_ACCESS_TOKEN"])
 
-Value=inspect.getmoduleinfo(received_message)
-print(Value)
+@page.handle_message
+def getvalues(event):
+    Value=inspect.getmoduleinfo(received_message)
+
+print getvalues
