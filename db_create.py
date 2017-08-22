@@ -29,16 +29,10 @@ import os
 from fbmq import Page
 from flask_sqlalchemy import SQLAlchemy
 from models import Result, db
-from app import send
+from app import received_message
 
-page = Page(os.environ["PAGE_ACCESS_TOKEN"])
-
-@page.handle_message
-def receved_tosend(event):
-    Sender_id = event.Sender_id
-    message = event.message
-    time_of_message = event.timestamp
-    send_import= send
-
-    Value = (Sender_id ,message ,send_import)
-    print(Value)
+senderid=received_message.Sender_id
+messageimport= received_message.message
+replytextimport=received_message.reply_text
+Value = (senderid ,messageimport ,replytextimport)
+print(Value)
