@@ -33,7 +33,6 @@ from models import Result, db
 from app import received_message
 
 def values():
-    value= 1
-    print(value)
-
+    print("dfafe")
+    
 print(values)
