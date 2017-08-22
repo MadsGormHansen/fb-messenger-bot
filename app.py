@@ -194,6 +194,8 @@ def received_message(event):
     print(reply_text)
     print(message)
 
+    execfile("db_create.py")
+
 @page.handle_postback
 def received_postback(event): 
     sender_id = event.sender_id
@@ -219,4 +221,3 @@ def callback_clicked_button(payload, event):
 def after_send(payload, response):
     """:type payload: fbmq.Payload"""
 
-execfile("db_create.py")
