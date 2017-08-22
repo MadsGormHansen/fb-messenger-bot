@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+'''
 import os
 import sys
 import json
@@ -21,4 +22,17 @@ def when_received(event):
     print code 
 
     db.session.add(Result("12345","hjehj","dfhafei"))
+    db.session.commit()
+'''
+ # coding: utf-8
+import os
+from fbmq import Page
+from flask_sqlalchemy import SQLAlchemy
+from models import Result, db
+
+page = Page(os.environ["PAGE_ACCESS_TOKEN"])
+
+@page.after_send
+def after_send(payload, response):
+    db.session.add(Result('121', "test1", "test1"))
     db.session.commit()
