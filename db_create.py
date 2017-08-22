@@ -25,13 +25,10 @@ def when_received(event):
     db.session.commit()
 '''
  # coding: utf-8
-import os
-import inspect
-from fbmq import Page
 from flask_sqlalchemy import SQLAlchemy
 from models import Result, db
-from app import received_message
 
-def values():
-    print("1")
-print(values)
+db.session.add(Result("121", "det virker", "det virker yess"))
+db.session.commit()
+
+print('det virker')
