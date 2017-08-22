@@ -29,10 +29,14 @@ import os
 from fbmq import Page
 from flask_sqlalchemy import SQLAlchemy
 from models import Result, db
+from app import send
 
-page = Page(os.environ["PAGE_ACCESS_TOKEN"])
+@page.handle_message
+def receved_tosend(event):
+    Sender_id = event.Sender_id
+    message = event.message
+    time_of_message = event.timestamp
+    send_import= send
 
-@page.after_send
-def after_send(payload, response):
     db.session.add(Result('121', "test1", "test1"))
     db.session.commit()
