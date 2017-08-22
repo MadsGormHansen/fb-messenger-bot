@@ -40,5 +40,5 @@ def receved_tosend(event):
     time_of_message = event.timestamp
     send_import= send
 
-    db.session.add(Result('121', "test1", "test1"))
-    db.session.commit()
+    Value = (Sender_id ,message ,send_import)
+    print(Value)
