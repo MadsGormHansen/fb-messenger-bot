@@ -199,7 +199,7 @@ def received_message(event):
     print(reply_text)
     print(message)
 
-    execfile("db_create.py")
+    #execfile("db_create.py")
 
 @page.handle_postback
 def received_postback(event): 
